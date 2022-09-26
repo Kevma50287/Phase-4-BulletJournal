@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CalendarState } from '../../types/CalendarType';
 
-const dateObj = new Date();
-const currentDate = dateObj.toISOString()
-const currentDateOnlyDateFormat = currentDate.substring(0, 10)
+const currentDate = new Date().toISOString()
 
 const initialState:CalendarState = {
-  currentDate: currentDateOnlyDateFormat,
-  selectedDate: currentDateOnlyDateFormat
+  currentDate: currentDate,
+  selectedDate: currentDate
 }
 
 
@@ -22,22 +20,22 @@ export const calendarSlice = createSlice({
     incrementSelectedDateMonth:(state) => {
       const newDateObj = new Date(state.selectedDate)
       const incrementedNewDateObj = new Date(newDateObj.setMonth(newDateObj.getMonth() + 1))
-      state.selectedDate = incrementedNewDateObj.toISOString().substring(0, 10)
+      state.selectedDate = incrementedNewDateObj.toISOString()
     },
     decrementSelectedDateMonth:(state) => {
       const newDateObj = new Date(state.selectedDate)
       const decrementedNewDateObj = new Date(newDateObj.setMonth(newDateObj.getMonth() - 1))
-      state.selectedDate = decrementedNewDateObj.toISOString().substring(0, 10)
+      state.selectedDate = decrementedNewDateObj.toISOString()
     },
     incrementSelectedDateYear:(state) => {
       const newDateObj = new Date(state.selectedDate)
       const incrementedNewDateObj = new Date(newDateObj.setFullYear(newDateObj.getFullYear() + 1))
-      state.selectedDate = incrementedNewDateObj.toISOString().substring(0, 10)
+      state.selectedDate = incrementedNewDateObj.toISOString()
     },
     decrementSelectedDateYear:(state) => {
       const newDateObj = new Date(state.selectedDate)
       const decrementedNewDateObj = new Date(newDateObj.setFullYear(newDateObj.getFullYear() - 1))
-      state.selectedDate = decrementedNewDateObj.toISOString().substring(0, 10)
+      state.selectedDate = decrementedNewDateObj.toISOString()
     },
   },
 })

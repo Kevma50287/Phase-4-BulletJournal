@@ -1,4 +1,4 @@
-import { Person, BarChart, Search, CalendarMonth } from '@mui/icons-material'
+import { Person, BarChart, Search, CalendarMonth, AutoStories } from '@mui/icons-material'
 import './Header.scss'
 import { Link } from 'react-router-dom'
 
@@ -13,6 +13,11 @@ const Header = () => {
       </div>
       <div className='icon-container'>
         <Search className='header-icon' />
+      </div>
+      <div className='icon-container'>
+        <Link to='/'>
+          <AutoStories className='header-icon' />  
+        </Link>
       </div>
       <div className='icon-container'>
         <Link to='/stats'>
