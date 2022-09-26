@@ -1,0 +1,44 @@
+
+// Import variables
+@use '../../utilities/variables.scss' as v;
+
+$journal-date-height: 20px;
+
+#journal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: v.$main-margin ;
+  height: 100%;
+}
+
+#journal-date{
+  height: $journal-date-height;
+}
+
+#leftpage {
+  width: 50%;
+  height: v.$main-height;
+  background-color: v.$champagne-pink;
+  border-radius: 20px 0px 0px 20px
+}
+
+#rightpage {
+  width: 50%;
+  height: v.$main-height;
+  background-color: v.$champagne-pink;
+  border-radius: 0px 20px 20px 0px
+}
+
+#diary-input{
+  outline: none;
+  border: none;
+  resize: none;
+  margin: auto;
+  text-align: center;
+}
+
+#diary-input-container{
+  margin: 0px;
+  height: calc(100% - $journal-date-height);
+}

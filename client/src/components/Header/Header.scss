@@ -1,0 +1,33 @@
+@use '../../utilities/variables.scss' as v;
+
+#header {
+  width:100%;
+  height: v.$header-height;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: v.$melon;
+}
+
+.header-icon{
+  transform: scale(2);
+  margin: auto
+}
+
+.icon-container{
+  height:fit-content;
+  width: fit-content;
+  text-align: center;
+}
+
+//disable default css 
+a:any-link{
+  color: black;
+  text-decoration: none;
+}
+
+a:hover svg{
+  transform: scale(3);
+  transition: all 0.25s;
+}
