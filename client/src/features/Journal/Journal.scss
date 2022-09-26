@@ -10,35 +10,100 @@ $journal-date-height: 20px;
   justify-content: center;
   margin: v.$main-margin ;
   height: 100%;
+
+  #leftpage {
+    width: 50%;
+    height: v.$main-height;
+    background-color: v.$book-color;
+    border-radius: 20px 0px 0px 20px;
+    padding: 10px;
+
+    h3 {
+      margin: 0px 0px 10px 0px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #emotion-icon-container {
+      display:flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-bottom: 10px;
+      
+
+      .emotion-icon{
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    #activity-icon-container {
+      display: flex;
+      flex-wrap: wrap;
+      height:70%;
+      column-gap: 5%;
+
+      .activity-icon{
+        width: 20%;
+        height: fit-content;
+      }
+    }
+  }
+
+  #rightpage {
+    width: 50%;
+    height: v.$main-height;
+    background-color: v.$book-color;
+    border-radius: 0px 20px 20px 0px;
+    padding: 10px;
+  }
+
+  #journal-date{
+    height: $journal-date-height;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  #diary-input{
+    outline: none;
+    border: none;
+    resize: none;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding:20px;
+
+    &::-webkit-scrollbar{
+      border-radius: 10px;
+      background-color: v.$light-steel-blue;
+      width:20px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+      border-radius: 10px;
+      background-color: v.$independence;
+      &:hover{
+        cursor: pointer !important;
+      }
+    }
+
+    &::-webkit-scrollbar-button{
+      display: none;
+    }
+  }
+  
+  #diary-input-container{
+    height: calc(100% - $journal-date-height - 50px);
+  }
+
+  #diary-save-button{
+    display:block;
+    margin: auto;
+    text-align: center;
+    font-size: 1.25rem;
+    height: 40px;
+    width: 200px;
+  }
 }
 
-#journal-date{
-  height: $journal-date-height;
-}
-
-#leftpage {
-  width: 50%;
-  height: v.$main-height;
-  background-color: v.$champagne-pink;
-  border-radius: 20px 0px 0px 20px
-}
-
-#rightpage {
-  width: 50%;
-  height: v.$main-height;
-  background-color: v.$champagne-pink;
-  border-radius: 0px 20px 20px 0px
-}
-
-#diary-input{
-  outline: none;
-  border: none;
-  resize: none;
-  margin: auto;
-  text-align: center;
-}
-
-#diary-input-container{
-  margin: 0px;
-  height: calc(100% - $journal-date-height);
-}
