@@ -9,15 +9,13 @@ import shoppingBags from '../../images/shoppingBags.svg'
 import sleepMoon from '../../images/sleepMoon.svg'
 import travelCar from '../../images/travelCar.svg'
 import workoutBarbell from '../../images/workoutBarbell.svg'
+import ActivityButton from './ActivityButton'
 
 const DailyActivityCheck = () => {
   const imageSources=[bookAndLamp, foodPlate, gameController, groupFriends, heart, musicNote, shoppingBags, sleepMoon, travelCar, workoutBarbell]
   const imagesArray= imageSources.map((image) => {
     return (
-      <div className="activity-icon-container">
-        <img className='activity-icon' src={image} alt='activity-icon'/>
-      </div>
-      
+      <ActivityButton image={image} />
     )
   })
   return (
