@@ -14,13 +14,16 @@ const DailyActivityCheck = () => {
   const imageSources=[bookAndLamp, foodPlate, gameController, groupFriends, heart, musicNote, shoppingBags, sleepMoon, travelCar, workoutBarbell]
   const imagesArray= imageSources.map((image) => {
     return (
-      <img className='activity-icon' src={image} alt='activity-icon'/>
+      <div className="activity-icon-container">
+        <img className='activity-icon' src={image} alt='activity-icon'/>
+      </div>
+      
     )
   })
   return (
     <>
       <h3>What did you do today?</h3>
-      <div id="activity-icon-container">
+      <div id="all-activities-container">
         {imagesArray}
       </div>
       
