@@ -1,0 +1,60 @@
+@use '../../utilities/variables.scss' as v;
+
+#logo-container {
+  width: 50%;
+  height: 100vh;
+  background: v.$gradient;
+}
+  
+#login-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+  padding: 20vh 2.5% 0px 2.5%;
+  h1, h4 {
+    text-align: center;
+  }
+
+  h5 {
+    margin:5px auto 5px auto;
+    width: 100%;
+  }
+
+  .authButton {
+    background:v.$independence;
+    border-radius: 20px;
+    margin: 2px auto 0px auto;
+  }
+
+  button {
+    background:v.$independence;
+    border-radius: 20px;
+    text-decoration: none ;
+    color:white;
+    width: 100%;
+    border: none;
+    font-weight: bold;
+  }
+
+  u {
+    text-decoration: none ;
+    color:white;
+  }
+
+  #form-container{
+    margin: 50px auto 0px auto;
+    border-radius: 10px;
+    padding:5px;
+    text-align: center;
+    box-shadow: 3px 5px 10px 3px rgb(155, 155, 155);
+
+    .authFormInputs {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 1px auto;
+      &:hover {
+        
+      }
+    }
+  }
+}

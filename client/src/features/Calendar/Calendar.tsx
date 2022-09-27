@@ -1,6 +1,6 @@
 import './Calendar.scss'
 import { useAppSelector, useAppDispatch } from '../../hooks'
-import { decrementSelectedDateMonth, decrementSelectedDateYear, incrementSelectedDateMonth, incrementSelectedDateYear } from './calendarSlice'
+import { decrementSelectedDateMonth, decrementSelectedDateYear, incrementSelectedDateMonth, incrementSelectedDateYear } from '../Slices/calendarSlice'
 import { v4 as uuid } from 'uuid'
 import CalendarDay from './CalendarDay'
 
