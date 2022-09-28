@@ -5,7 +5,10 @@ import happyPanda from '../../images/happyPanda.svg'
 import superHappyPanda from '../../images/superHappyPanda.svg'
 import EmotionButton from './EmotionButton'
 
-const DailyEmotionCheck = () => {
+interface EmotionCheckProps {
+  setEmotion:Function
+}
+const DailyEmotionCheck = ({setEmotion}:EmotionCheckProps) => {
   const pandas = [depressedPanda, sadPanda, neutralPanda, happyPanda, superHappyPanda]
   const pandasArray = pandas.map((panda) => {
     const aPanda = panda

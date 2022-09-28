@@ -11,7 +11,11 @@ import travelCar from '../../images/travelCar.svg'
 import workoutBarbell from '../../images/workoutBarbell.svg'
 import ActivityButton from './ActivityButton'
 
-const DailyActivityCheck = () => {
+interface ActivityCheckProps {
+  setActivities: Function
+}
+
+const DailyActivityCheck = ({setActivities}:ActivityCheckProps) => {
   const imageSources=[
     {[bookAndLamp]:"study"}, 
     {[foodPlate]:"dining"}, 

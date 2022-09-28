@@ -24,7 +24,7 @@ const Journal = () => {
   })
 
   //Generate dateObj
-  
+
   // FIXME:May need to keep date separate from Calendar State
   const currentDate = useAppSelector((state) => state.calendar.currentDate)
   const selectedDate = useAppSelector((state) => state.calendar.selectedDate)
@@ -33,6 +33,14 @@ const Journal = () => {
   //Handler Functions
   const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setJournalEntry({...journalEntry, entry:e.target.value})
+  }
+
+  const handleActivities = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+
+  }
+
+  const handleEmotion = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    
   }
 
   // TODO:Add useEffect on dateObj to fetch relevant data of the selectedDate
@@ -48,8 +56,8 @@ const Journal = () => {
   return (
     <div id="journal">
       <div id='leftpage'>
-        <DailyEmotionCheck/>
-        <DailyActivityCheck/>
+        <DailyEmotionCheck setEmotion={handleEmotion} />
+        <DailyActivityCheck setActivities={handleActivities} />
       </div>
       <div id='rightpage'>
         <div id='journal-date'>
