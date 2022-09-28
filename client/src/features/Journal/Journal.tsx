@@ -57,7 +57,6 @@ const Journal = () => {
     }
   }
 
-  console.log(journalEntry.activities)
 
   const handleEmotion = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     

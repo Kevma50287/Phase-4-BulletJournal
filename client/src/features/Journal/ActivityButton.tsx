@@ -17,13 +17,6 @@ const ActivityButton = ({image, name, setActivities}: activityButtonProps) => {
     }, {once:true})
   }
 
-
-  // TODO:Set activity function
-  
-  // const handleSetActivity = (e) => {
-
-  // }
-
   return (
     <div 
       className={`activity-icon-container ${toggleMouseDown&& "scale-down-center"}`} 
