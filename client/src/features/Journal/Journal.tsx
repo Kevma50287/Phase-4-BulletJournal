@@ -13,7 +13,6 @@ interface journalProps {
   activities:{[key:string]:boolean}
 }
 
-
 const Journal = () => {
   const initialState:journalProps = {
     emotion:"",
@@ -49,7 +48,9 @@ const Journal = () => {
   const handleActivities = (name: string) => {
     const entries = journalEntry.activities
     const entriesCopy = {...entries}
+    //Check is acitvity name exists in object
     if (entries.hasOwnProperty(name)){
+      //If so change change the value of it and set it
       entriesCopy[name] = !entriesCopy[name]
       const newJournalEntry = {...journalEntry}
       newJournalEntry.activities = entriesCopy
@@ -57,10 +58,16 @@ const Journal = () => {
     }
   }
 
-
-  const handleEmotion = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    
+  const handleEmotion = (condition:string) => {
+    //To deselect emotion
+    if (condition === journalEntry.emotion){
+      setJournalEntry({...journalEntry, emotion:""})
+    } else { //To set emotion
+      setJournalEntry({...journalEntry, emotion:condition})
+    }
   }
+
+  console.log(journalEntry.emotion)
 
   // TODO:Add useEffect on dateObj to fetch relevant data of the selectedDate
 
@@ -75,8 +82,8 @@ const Journal = () => {
   return (
     <div id="journal">
       <div id='leftpage'>
-        <DailyEmotionCheck setEmotion={handleEmotion} />
-        <DailyActivityCheck setActivities={handleActivities} />
+        <DailyEmotionCheck setEmotion={handleEmotion} currentEmotion={journalEntry.emotion} />
+        <DailyActivityCheck setActivities={handleActivities} currentActivities={journalEntry.activities} />
       </div>
       <div id='rightpage'>
         <div id='journal-date'>

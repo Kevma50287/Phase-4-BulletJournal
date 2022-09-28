@@ -7,13 +7,14 @@ import EmotionButton from './EmotionButton'
 
 interface EmotionCheckProps {
   setEmotion:Function
+  currentEmotion:string
 }
-const DailyEmotionCheck = ({setEmotion}:EmotionCheckProps) => {
+const DailyEmotionCheck = ({setEmotion, currentEmotion}:EmotionCheckProps) => {
   const pandas = [depressedPanda, sadPanda, neutralPanda, happyPanda, superHappyPanda]
   const pandasArray = pandas.map((panda) => {
     const aPanda = panda
     return (
-      <EmotionButton image={aPanda} />
+      <EmotionButton image={aPanda} setEmotion={setEmotion} currentEmotion={currentEmotion} />
     )
   })
 

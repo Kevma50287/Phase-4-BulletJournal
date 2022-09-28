@@ -13,9 +13,10 @@ import ActivityButton from './ActivityButton'
 
 interface ActivityCheckProps {
   setActivities: Function
+  currentActivities: {[key:string]:boolean}
 }
 
-const DailyActivityCheck = ({setActivities}:ActivityCheckProps) => {
+const DailyActivityCheck = ({setActivities, currentActivities}:ActivityCheckProps) => {
   const imageSources=[
     {[bookAndLamp]:"study"}, 
     {[foodPlate]:"dining"}, 
@@ -34,7 +35,7 @@ const DailyActivityCheck = ({setActivities}:ActivityCheckProps) => {
     const key = Object.keys(image)[0]
     const value = image[key]
     return (
-      <ActivityButton image={key} name={value} setActivities={setActivities} />
+      <ActivityButton image={key} name={value} setActivities={setActivities} currentActivities={currentActivities} />
     )
   })
   return (

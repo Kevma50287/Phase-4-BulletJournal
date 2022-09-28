@@ -4,9 +4,10 @@ interface activityButtonProps {
   image:string
   name:string
   setActivities:Function
+  currentActivities:{[key:string]:boolean}
 }
 
-const ActivityButton = ({image, name, setActivities}: activityButtonProps) => {
+const ActivityButton = ({image, name, setActivities, currentActivities}: activityButtonProps) => {
   const [toggleMouseDown, setToggleMouseDown]= useState(false)
 
   // the once true optional paramater allows the event to only run once before it is removed
@@ -19,7 +20,11 @@ const ActivityButton = ({image, name, setActivities}: activityButtonProps) => {
 
   return (
     <div 
-      className={`activity-icon-container ${toggleMouseDown&& "scale-down-center"}`} 
+      className={`
+        activity-icon-container 
+        ${toggleMouseDown&& "scale-down-center"}
+        ${currentActivities[`${name}`]&& "button-selected"}
+      `} 
       onMouseDown={(e)=> handleToggleMouseDown(e)}
       draggable={false}
       onClick={e => setActivities(name)}
