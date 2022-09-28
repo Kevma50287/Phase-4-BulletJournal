@@ -12,7 +12,7 @@ const CalendarDay = ({date, isInTheCurrentMonth} : CalendarProps) => {
   const selectedDate = useAppSelector((state) => state.calendar.selectedDate)
   const dispatch = useAppDispatch()
 
-// TODO:On initial render, should fetch information from DB. 
+// TODO:On initial render, should fetch information from DB
 
   return (
     <div className={`

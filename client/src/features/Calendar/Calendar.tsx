@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks'
 import { decrementSelectedDateMonth, decrementSelectedDateYear, incrementSelectedDateMonth, incrementSelectedDateYear } from '../Slices/calendarSlice'
 import { v4 as uuid } from 'uuid'
 import CalendarDay from './CalendarDay'
+import { loadPlugin } from 'immer/dist/internal'
 
 const Calendar = () => {
   const dispatch = useAppDispatch()
@@ -30,6 +31,7 @@ const Calendar = () => {
   // TODO: To Refactor later so that we aren't crating 42 new elements everytime. 
   // We should be able to just change the content of each one after
   // setting an initial array of 42 objects
+
   const getCalendarDays = (firstDayOfTheMonth:number, numberOfDaysInTheMonth:number) => {
     let daysArr = []
 

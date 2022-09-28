@@ -30,7 +30,6 @@ const DailyActivityCheck = ({setActivities, currentActivities}:ActivityCheckProp
     {[workoutBarbell]:'workout'}
   ]
   
-
   const imagesArray= imageSources.map((image) => {
     const key = Object.keys(image)[0]
     const value = image[key]
@@ -38,13 +37,13 @@ const DailyActivityCheck = ({setActivities, currentActivities}:ActivityCheckProp
       <ActivityButton image={key} name={value} setActivities={setActivities} currentActivities={currentActivities} />
     )
   })
+
   return (
     <>
       <h3>What did you do today?</h3>
       <div id="all-activities-container">
         {imagesArray}
       </div>
-      
     </>
   )
 }

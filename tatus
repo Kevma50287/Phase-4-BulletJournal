@@ -1,0 +1,71 @@
+[33mcommit 67dfa5bc62aafb1c04899107bdd683f7267736b0[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Wed Sep 28 15:26:54 2022 -0400
+
+    Added emotion handler
+
+[33mcommit 5aec5909e4dd427c0de3fe00cbcc35e64f2b8162[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Wed Sep 28 14:22:10 2022 -0400
+
+    Added activityhandler
+
+[33mcommit 6171c22b7437dd78d5580151ea50b4a10ad8f843[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Wed Sep 28 14:20:49 2022 -0400
+
+    Added activityhandler
+
+[33mcommit 1b736cb320e540f09703d6c4cf56adf98d6fdcba[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Wed Sep 28 13:49:08 2022 -0400
+
+    included callbacks
+
+[33mcommit eba8adf762ac7b52826181bc0557b739ad4fcc22[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Wed Sep 28 13:43:38 2022 -0400
+
+    Added date selection
+
+[33mcommit 4dad38d1a59e39d5538d8bc33111ed12267f55c8[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Wed Sep 28 12:30:08 2022 -0400
+
+    Added TODOs
+
+[33mcommit a729deece453f7692331fbd78ba325095b916992[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Tue Sep 27 17:14:09 2022 -0400
+
+    Fixed routing
+
+[33mcommit 0541a14cd970bfdd7fb65f7d938844e527adf8c4[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Tue Sep 27 09:58:43 2022 -0400
+
+    Added acitivty button
+
+[33mcommit d7ae3e40d4a19ea7035508b05eb4bd6577b65579[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Tue Sep 27 09:52:45 2022 -0400
+
+    Added button visual effects
+
+[33mcommit 7d1c0e4952ad941ca2197c6f3d751d1ed6eb9038[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Mon Sep 26 19:04:37 2022 -0400
+
+    added icons
+
+[33mcommit 3f4f2ed1d34ba246c58218f5c31bd9fccf6f7a44[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Mon Sep 26 15:42:03 2022 -0400
+
+    Fixed type error
+
+[33mcommit fff0c1c6448e4d6355265db235c61443c103c1cc[m
+Author: Kevin <magavakevin10@gmail.com>
+Date:   Mon Sep 26 15:10:51 2022 -0400
+
+    Added calendar

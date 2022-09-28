@@ -67,8 +67,6 @@ const Journal = () => {
     }
   }
 
-  console.log(journalEntry.emotion)
-
   // TODO:Add useEffect on dateObj to fetch relevant data of the selectedDate
 
   //TODO: Add submit to backend 

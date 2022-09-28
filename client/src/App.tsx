@@ -29,8 +29,9 @@ function App() {
                 <Route path='journal' element={<Journal/>}/>
                 <Route path='calendar' element={<Calendar/>}/>
                 <Route path='settings' element={<Settings/>}/>
-                {/* TODO: Add statistics */}
+                {/* TODO: Add statistics and profile */}
                 {/* <Route path='stats' element={<Statistics/>}/> */}
+                {/* <Route path='profile' element={<Profile/>}/> */}
               </Route>
             </Routes>
           </div>
