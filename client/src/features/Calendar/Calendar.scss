@@ -29,6 +29,10 @@
     background-color: $light-steel-blue;
   }
 
+  .selected-day{
+    border: 5px solid $independence;
+  }
+
   .not-current-month-day{
     background-color: gray;
   }

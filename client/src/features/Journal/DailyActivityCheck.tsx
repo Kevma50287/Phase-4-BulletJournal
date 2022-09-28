@@ -12,10 +12,25 @@ import workoutBarbell from '../../images/workoutBarbell.svg'
 import ActivityButton from './ActivityButton'
 
 const DailyActivityCheck = () => {
-  const imageSources=[bookAndLamp, foodPlate, gameController, groupFriends, heart, musicNote, shoppingBags, sleepMoon, travelCar, workoutBarbell]
+  const imageSources=[
+    {[bookAndLamp]:"study"}, 
+    {[foodPlate]:"dining"}, 
+    {[gameController]:'gaming'}, 
+    {[groupFriends]: 'friends'}, 
+    {[heart]: 'dating'}, 
+    {[musicNote]: 'music'}, 
+    {[shoppingBags]:'shopping'}, 
+    {[sleepMoon]:'nap'}, 
+    {[travelCar]:'travel'}, 
+    {[workoutBarbell]:'workout'}
+  ]
+  
+
   const imagesArray= imageSources.map((image) => {
+    const key = Object.keys(image)[0]
+    const value = image[key]
     return (
-      <ActivityButton image={image} />
+      <ActivityButton image={key} name={value} />
     )
   })
   return (

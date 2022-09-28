@@ -8,7 +8,7 @@ const Calendar = () => {
   const dispatch = useAppDispatch()
 
   //Store the currentDate and selectedDate freom the store
-  const currentDate = useAppSelector((state) => state.calendar.selectedDate)
+  const currentDate = useAppSelector((state) => state.calendar.currentDate)
   const selectedDate = useAppSelector((state) => state.calendar.selectedDate)
 
   //Array of months and days. Will retrieve value at index selectedMonth

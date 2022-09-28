@@ -15,11 +15,17 @@ const EmotionButton = ({image}: emotionButtonProps) => {
     }, {once:true})
   }
 
+  const condition = image.split(".")[0].split("/").pop()?.split("Panda")[0]
+  const handleSelect = (e:React.MouseEvent) => {
+    
+  }
+
   return (
     <div 
       className={`emotion-icon-container ${toggleMouseDown&& "scale-down-center"}`} 
       onMouseDown={(e)=> handleToggleMouseDown(e)}
       draggable={false}
+      onClick={(e) => handleSelect(e)}
     >
       <img className='emotion-icon' draggable={false} src={image} alt='depressed panda'/>
     </div>
