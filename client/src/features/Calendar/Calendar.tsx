@@ -27,7 +27,9 @@ const Calendar = () => {
   const numberOfDaysInTheMonth:number = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0).getDate()
 
 
-
+  // TODO: To Refactor later so that we aren't crating 42 new elements everytime. 
+  // We should be able to just change the content of each one after
+  // setting an initial array of 42 objects
   const getCalendarDays = (firstDayOfTheMonth:number, numberOfDaysInTheMonth:number) => {
     let daysArr = []
 

@@ -23,10 +23,14 @@ const LoginPage = () => {
     navigate('/signup')
   }
 
+  const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
     <>
       <h5>Please login:</h5>
-      <form id="login-form">
+      <form id="login-form" onSubmit={e => handleLoginSubmit(e)}>
           <div>
             <input 
               type='text'

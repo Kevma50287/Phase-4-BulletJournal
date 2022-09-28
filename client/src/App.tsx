@@ -22,6 +22,8 @@ function App() {
                 <Route path='login' element={<LoginPage/>}/>
                 <Route path='signup' element={<SignUpPage/>}/>
               </Route>
+              {/* TODO: The username routes should only be accessible if the user is logged in */}
+              {/* If the user is not logged in then unauthorized should be returned */}
               <Route path='/user/:username' element={<Layout/>}>
                 <Route index element={<Journal/>}/>
                 <Route path='journal' element={<Journal/>}/>
