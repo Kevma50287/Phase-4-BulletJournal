@@ -4,24 +4,35 @@ import { useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
 
+
+// Need to type the key of the object as a string
+interface journalProps {
+  emotion:string,
+  entry:string,
+  date:string,
+  activities:{[key:string]:boolean}
+}
+
+
 const Journal = () => {
-  const [journalEntry, setJournalEntry] = useState({
+  const initialState:journalProps = {
     emotion:"",
     entry:"",
     date:"",
     activities: {
-      study:false,
-      dining:false,
-      gaming:false,
-      workout:false,
-      friends:false,
-      dating:false,
-      music:false,
-      shopping:false,
-      nap:false,
-      travel:false
+      "study":false,
+      "dining":false,
+      "gaming":false,
+      "workout":false,
+      "friends":false,
+      "dating":false,
+      "music":false,
+      "shopping":false,
+      "nap":false,
+      "travel":false
     }
-  })
+  }
+  const [journalEntry, setJournalEntry] = useState(initialState)
 
   //Generate dateObj
 
@@ -35,9 +46,18 @@ const Journal = () => {
     setJournalEntry({...journalEntry, entry:e.target.value})
   }
 
-  const handleActivities = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-
+  const handleActivities = (name: string) => {
+    const entries = journalEntry.activities
+    const entriesCopy = {...entries}
+    if (entries.hasOwnProperty(name)){
+      entriesCopy[name] = !entriesCopy[name]
+      const newJournalEntry = {...journalEntry}
+      newJournalEntry.activities = entriesCopy
+      setJournalEntry(newJournalEntry) 
+    }
   }
+
+  console.log(journalEntry.activities)
 
   const handleEmotion = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     

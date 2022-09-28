@@ -34,7 +34,7 @@ const DailyActivityCheck = ({setActivities}:ActivityCheckProps) => {
     const key = Object.keys(image)[0]
     const value = image[key]
     return (
-      <ActivityButton image={key} name={value} />
+      <ActivityButton image={key} name={value} setActivities={setActivities} />
     )
   })
   return (
