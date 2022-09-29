@@ -39,13 +39,12 @@ class JournalEntriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_journal_entry
-      @journal_entry = JournalEntry.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def journal_entry_params
-      params.require(:journal_entry).permit(:user_id, :date, :emotion, :entry)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_journal_entry
+    @journal_entry = JournalEntry.find_by!(id:params[:id])
+  end
+  # Only allow a list of trusted parameters through.
+  def journal_entry_params
+    params.require(:journal_entry).permit(:user_id, :date, :emotion, :entry)
+  end
 end
