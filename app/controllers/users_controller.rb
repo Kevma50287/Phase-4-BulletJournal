@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
   before_action :set_user, only: %i[ show update destroy ]
 
-  # GET /users/1
+  # GET /profile
   def profile
     @user_id = decode_token
     if @user_id
@@ -19,19 +19,21 @@ class UsersController < ApplicationController
     render json: {user:@user, jwt: @token}, status: :created
   end
 
-  # PATCH/PUT /users/1
-  def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
+  # TODO: Allow users to update their user info and delete their account
 
-  # DELETE /users/1
-  def destroy
-    @user.destroy
-  end
+  # # PATCH/PUT /users/1
+  # def update
+  #   if @user.update(user_params)
+  #     render json: @user
+  #   else
+  #     render json: @user.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+  # # DELETE /users/1
+  # def destroy
+  #   @user.destroy
+  # end
 
   private
   # Use callbacks to share common setup or constraints between actions.
