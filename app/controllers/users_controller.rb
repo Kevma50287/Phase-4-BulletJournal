@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def profile
     @user_id = decode_token
     if @user_id
-      render json: User.find_by!(id: @user_id)
+      render json: User.find_by!(id: @user_id), serializer: UserEntriesSerializer
     else 
       render json: {error: "401 incorrect token"}, status: 401
     end

@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_203106) do
     t.datetime "date"
     t.string "emotion"
     t.string "entry"
+    t.string "activities", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_journal_entries_on_user_id"
