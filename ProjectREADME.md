@@ -62,17 +62,73 @@ This project is bootstrapped using the following technologies
 # Database Diagram and Relationships
 
 ## MVP
-
 ---
+<br>
+<br>
 
-# Backend API Structure
+# ROUTES
 
-## ROUTES
+## USERS
 
-1. POST 'users#create'
-<html>
-  sdsfsdfsfd
-</html>
+<br>
+
+### POST 'users#create'
+Send this:
+
+>{  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user: {  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;username:"",  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password:"",  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password_confirmation:"",  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email:"",  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;phone_number:"",  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first_name:"",  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_name:"",  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}  
+}
+
+Returns this:
+
+>{  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user: {  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userObj...  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jwt: 'string'  
+}
+
+<br>
+
+### GET 'users#profile'
+
+Returns this:
+>{  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user:  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;userObj...  
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;journal_entries: {all entries}
+      }  
+}
+
+<br>
+
+## Journal_Entries
+
+GET '/journal_entries#index'
+
+Returns this:
+>{  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;journal_entries: [{  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date:"",  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emotion:"",  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry:"",  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}]  
+}
+
+
+
+
+
+
 
 
 
