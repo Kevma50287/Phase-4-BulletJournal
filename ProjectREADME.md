@@ -10,15 +10,15 @@ BONUS: User's will get a random motivational message/video to jumpstart their da
 The follow lists the features user's of this web app will have access to:
 
 ### Essentials
-1.
-2.
-3.
+1. On page load, user will be directed to a login and signup page where they will be authenticated and authorized
+2. The user will be able to submit journal entries that track their mood, activities, and any other info they want to include for that day
+3. There will be a calendar with icons on each day that vary depending on what the user has inputted. The user can navigate their posts through the calendar view or through the searc icon in the header
 
 
 ### Non-Essentials
-1.
-2.
-3.
+1. Users can change the theme of their journal, their password, and other settings/personal info
+2. A Stats page to keep track of useful trends and stats of the user (average mood for example)
+3. Users can change the icons, shape of the pages, and the acitvity icons. Personalization of the application
 
 ---
 
@@ -56,4 +56,24 @@ This project is bootstrapped using the following technologies
 4. SCSS
 5. PostgreSQL
 6. Devise
+
+---
+
+# Database Diagram and Relationships
+
+## MVP
+
+---
+
+# Backend API Structure
+
+## ROUTES
+
+1. POST 'users#create'
+<html>
+  sdsfsdfsfd
+</html>
+
+
+
 
