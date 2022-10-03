@@ -12,7 +12,8 @@ User.create!(
   first_name: "Kevin",
   last_name: "Ma",
   phone_number: "347-935-7112",
-  password: "123"
+  password: "123",
+  password_confirmation: "123"
 )
 
 User.create!(
@@ -21,31 +22,34 @@ User.create!(
   first_name: "Kevin",
   last_name: "Ma",
   phone_number: "347-935-7112",
-  password: "123"
+  password: "123",
+  password_confirmation: "123"
 )
 
 Journal.create!(
   name:"Test",
+  user_id: 1
 )
 
 Journal.create!(
   name:"Test Shared",
+  user_id: 1
 )
 
-
-SharedJournal.create!(
-  user_id:2,
-  journal_id:2
-)
-
-SharedJournal.create!(
-  user_id:1,
-  journal_id:2
-)
 
 SharedJournal.create!(
   user_id:1,
   journal_id:1
+)
+
+SharedJournal.create!(
+  user_id:1,
+  journal_id:2
+)
+
+SharedJournal.create!(
+  user_id:2,
+  journal_id:2
 )
 
 JournalEntry.create!(

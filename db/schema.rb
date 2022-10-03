@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_150247) do
 
   create_table "journals", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
