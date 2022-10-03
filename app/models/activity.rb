@@ -1,3 +1,4 @@
 class Activity < ApplicationRecord
-  has_many :journal_activity_joiners
+
+    validates_presence_of :activity_name 
 end
