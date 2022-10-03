@@ -125,6 +125,8 @@ Returns this:
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}]  
 }
 
+E
+=======
 POST  '/journal_entries'
 
 DELETE '/journal_entries/:id'

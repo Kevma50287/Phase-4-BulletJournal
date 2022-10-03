@@ -57,3 +57,6 @@ class JournalEntriesController < ApplicationController
     params.require(:journal_entry).permit(:date, :emotion, :entry, :activities => [])
   end
 end
+
+
+#authorization required to be able to make an entry 
