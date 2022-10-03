@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   before_action :authorized
-  rescue_from ActiveRecord::InvalidRecord, with: :render_unprocessable
+  rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from JWT::DecodeError, with: :render_token_error
 
@@ -27,10 +27,9 @@ class ApplicationController < ActionController::API
 
   def current_user
     if decode_token
-      # decode_token=> [{"user_id"=>2}, {"alg"=>"HS256"}]
+      # decode_token => :id
       # or nil if we can't decode the token
-      user_id = decode_token[0]['user_id']
-      @user = User.find_by!(id: user_id)
+      @user = User.find_by!(id: decode_token)
     end
   end
 

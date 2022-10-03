@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def profile
     @user_id = decode_token
     if @user_id
-      render json: User.find_by!(id: @user_id), serializer: UserEntriesSerializer
+      render json: User.find_by!(id: @user_id), serializer: UserJournalsSerializer
     else 
       render json: {error: "401 incorrect token"}, status: 401
     end
@@ -19,6 +19,8 @@ class UsersController < ApplicationController
     render json: {user:@user, jwt: @token}, status: :created
   end
 
+  # TODO: Allow users to update their user info and delete their account
+
   #PATCH /users/1 
   def update 
     if @user.update(user_params)
@@ -27,9 +29,7 @@ class UsersController < ApplicationController
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-
-  # TODO: Allow users to update their user info and delete their account
-
+  
    # DELETE /users/1
    def destroy
     @user.destroy
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:email, :username, :password_digest, :first_name, :last_name, :phone_number)
+    params.require(:user).permit(:email, :username, :password_confirmation, :password, :first_name, :last_name, :phone_number)
   end
 
     
