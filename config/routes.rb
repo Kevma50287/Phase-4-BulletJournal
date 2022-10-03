@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :shared_journals, only: [:create, :destroy]
-  resources :journals
-  resources :journal_entries, only: [:show, :create, :destroy, :update]
+  resources :journals do
+    resources :journal_entries
+  end
+  
 
   #Create a user at 'users#create'
   resources :users, only: [:create]

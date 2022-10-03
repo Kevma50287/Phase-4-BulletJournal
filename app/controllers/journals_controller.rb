@@ -1,23 +1,25 @@
 class JournalsController < ApplicationController
   before_action :set_journal, only: %i[ show update destroy ]
 
-  # GET /journals
-  def index
-    @journals = Journal.all
+  # # GET /journals
+  # def index
+  #   @journals = Journal.all
 
-    render json: @journals
-  end
+  #   render json: @journals
+  # end
 
-  # GET /journals/1
-  def show
-    render json: @journal
-  end
+  # # GET /journals/1
+  # def show
+  #   render json: @journal
+  # end
 
   # POST /journals
   def create
     @journal = Journal.new(journal_params)
 
+    # TODO: Add other users
     if @journal.save
+      SharedJournal.create!({user_id:decode_token, journal_id:@journal.id})
       render json: @journal, status: :created, location: @journal
     else
       render json: @journal.errors, status: :unprocessable_entity
