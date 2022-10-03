@@ -11,22 +11,22 @@ class ApplicationController < ActionController::API
   def generate_token(user_id)
     JWT.encode({user_id:user_id}, get_secret_key)
   end
-
+# in order to get decoded token u need a request that has aurhotization header token 
   def auth_header
     # { 'Authorization': 'Bearer <token>' }
     request.headers['Authorization']
   end
 
   def decode_token
-    if auth_header
-      token = auth_header.split(' ')[1]
+    if auth_header 
+      token = auth_header.split(' ')[1] #taking string and seperating into an array based on the argument
       # [{user_id: id}, {alg: XXXX}]
       JWT.decode(token, get_secret_key)[0]["user_id"]
     end
   end
 
   def current_user
-    if decode_token
+    if decode_token # in order to login user u need to get decoded token 
       # decode_token=> [{"user_id"=>2}, {"alg"=>"HS256"}]
       # or nil if we can't decode the token
       user_id = decode_token[0]['user_id']

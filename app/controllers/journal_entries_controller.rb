@@ -1,17 +1,18 @@
 class JournalEntriesController < ApplicationController
   before_action :set_journal_entry, only: %i[ show update destroy ]
 
+  # FIXME: TO DELETE LATER
   # GET /journal_entries
-  def index
-    @journal_entries = JournalEntry.all
+  # def index
+  #   @journal_entries = JournalEntry.all
 
-    render json: @journal_entries
-  end
+  #   render json: @journal_entries
+  # end
 
-  # GET /journal_entries/1
-  def show
-    render json: @journal_entry
-  end
+  # # GET /journal_entries/1
+  # def show
+  #   render json: @journal_entry
+  # end
 
   # POST /journal_entries
   def create
@@ -48,3 +49,6 @@ class JournalEntriesController < ApplicationController
     params.require(:journal_entry).permit(:user_id, :date, :emotion, :entry)
   end
 end
+
+
+#authorization required to be able to make an entry 
