@@ -10,33 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_28_203106) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_03_150247) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: :cascade do |t|
-    t.string "activity_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "journal_activity_joiners", force: :cascade do |t|
-    t.bigint "journal_entry_id", null: false
-    t.bigint "activity_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_journal_activity_joiners_on_activity_id"
-    t.index ["journal_entry_id"], name: "index_journal_activity_joiners_on_journal_entry_id"
-  end
-
   create_table "journal_entries", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "journal_id", null: false
     t.datetime "date"
     t.string "emotion"
     t.string "entry"
+    t.string "activities", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_journal_entries_on_user_id"
+    t.index ["journal_id"], name: "index_journal_entries_on_journal_id"
+  end
+
+  create_table "journals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shared_journals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "journal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journal_id"], name: "index_shared_journals_on_journal_id"
+    t.index ["user_id"], name: "index_shared_journals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_28_203106) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "journal_activity_joiners", "activities"
-  add_foreign_key "journal_activity_joiners", "journal_entries"
-  add_foreign_key "journal_entries", "users"
+  add_foreign_key "journal_entries", "journals"
+  add_foreign_key "shared_journals", "journals"
+  add_foreign_key "shared_journals", "users"
 end

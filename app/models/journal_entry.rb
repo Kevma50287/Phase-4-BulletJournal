@@ -1,6 +1,5 @@
 class JournalEntry < ApplicationRecord
-  belongs_to :user
-
-  validates_presence_of :date, :emotion, :entry 
-  
+#   validates_presence_of :date, :emotion, :entry 
+  belongs_to :journal
 end
+

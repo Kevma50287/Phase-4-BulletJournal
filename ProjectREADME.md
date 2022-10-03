@@ -121,10 +121,35 @@ Returns this:
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date:"",  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emotion:"",  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entry:"",  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;activities: ["", ""]
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}]  
 }
 
 E
+=======
+POST  '/journal_entries'
+
+DELETE '/journal_entries/:id'
+
+PATCH '/journal_entries/:id'
+
+<br>
+
+## Journals
+
+GET '/journal#index'
+
+Returns this:
+>{  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;journal: [{  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name:""  
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  }]  
+}
+
+POST '/journal'
+
+DELETE '/journal/:id'
+
 
 
 

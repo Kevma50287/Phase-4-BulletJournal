@@ -1,6 +1,6 @@
 require "test_helper"
 
-class JournalActivityJoinerTest < ActiveSupport::TestCase
+class SharedJournalTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
