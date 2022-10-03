@@ -43,8 +43,8 @@ const LoginPage = () => {
           </div>
           <div>
             <input 
-              type='text'
-              name='username'
+              type='password'
+              name='password'
               className='authFormInputs'
               value={loginCredentials.password }
               placeholder='Password'

@@ -5,10 +5,12 @@ import './App.scss';
 import Layout from './components/Layouts/Layout';
 import LoginLayout from './components/Layouts/LoginLayout';
 import Calendar from './features/Calendar/Calendar';
-import Journal from './features/Journal/Journal';
+import JournalSlider from './features/Journal/JournalSlider';
+import { JournalSliderData } from './features/Journal/JournalSliderData';
 import LoginPage from './features/UserAuth/LoginPage';
 import SignUpPage from './features/UserAuth/SignUpPage';
 import store from './store';
+
 
 function App() {
   return (
@@ -25,8 +27,8 @@ function App() {
               {/* TODO: The username routes should only be accessible if the user is logged in */}
               {/* If the user is not logged in then unauthorized should be returned */}
               <Route path='/user/:username' element={<Layout/>}>
-                <Route index element={<Journal/>}/>
-                <Route path='journal' element={<Journal/>}/>
+                {/*<Route index element={<Journal/>}/>*/}
+                <Route path='journals' element={<JournalSlider slides={JournalSliderData}/>}/> 
                 <Route path='calendar' element={<Calendar/>}/>
                 <Route path='settings' element={<Settings/>}/>
                 {/* TODO: Add statistics and profile */}
