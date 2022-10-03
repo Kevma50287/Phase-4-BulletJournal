@@ -1,0 +1,163 @@
+// Import variables
+@use '../../utilities/variables.scss' as v;
+
+$journal-date-height: 20px;
+$button-box-shadow: 0px 0px 5px 2px v.$independence;
+#journal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: v.$main-margin ;
+  height: 100%;
+
+  #leftpage {
+    width: 50%;
+    height: v.$main-height;
+    background-color: v.$book-color;
+    border-radius: 20px 0px 0px 20px;
+    padding: 10px;
+
+    h3 {
+      margin: 10px 0px 10px 0px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #all-emotions-container {
+      display:flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-bottom: 10px;
+
+      .emotion-icon-container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        &:hover{
+          box-shadow: $button-box-shadow;
+        }
+      }
+
+      .emotion-icon{
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    #all-activities-container {
+      display: flex;
+      flex-wrap: wrap;
+      height:70%;
+      column-gap: 5%;
+
+      .activity-icon-container{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        border-radius:50%;
+        width: 20%;
+        height: 25%;
+        background-color: white;
+        &:hover{
+          box-shadow: $button-box-shadow;
+        }
+      }
+
+      .activity-icon{
+        width: 75px;
+        height: 75px;
+        margin: auto;
+      }
+    }
+  }
+
+  #rightpage {
+    width: 50%;
+    height: v.$main-height;
+    background-color: v.$book-color;
+    border-radius: 0px 20px 20px 0px;
+    padding: 10px;
+  }
+
+  #journal-date{
+    height: $journal-date-height;
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  #diary-input{
+    outline: none;
+    border: none;
+    resize: none;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding:20px;
+
+    &::-webkit-scrollbar{
+      border-radius: 10px;
+      background-color: v.$light-steel-blue;
+      width:20px;
+    }
+
+    &::-webkit-scrollbar-thumb{
+      border-radius: 10px;
+      background-color: v.$independence;
+      &:hover{
+        cursor: pointer !important;
+      }
+    }
+
+    &::-webkit-scrollbar-button{
+      display: none;
+    }
+  }
+  
+  #diary-input-container{
+    height: calc(100% - $journal-date-height - 50px);
+  }
+
+  #diary-save-button{
+    display:block;
+    margin: auto;
+    text-align: center;
+    font-size: 1.25rem;
+    height: 40px;
+    width: 200px;
+  }
+}
+
+.button-selected {
+  box-shadow: $button-box-shadow;
+}
+
+.scale-down-center {
+	-webkit-animation: scale-down-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: scale-down-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+@keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
