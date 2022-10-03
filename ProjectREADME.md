@@ -125,10 +125,11 @@ Returns this:
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}]  
 }
 
-POST 
+POST  '/journal_entries'
 
-DELETE
+DELETE '/journal_entries/:id'
 
+PATCH '/journal_entries/:id'
 
 <br>
 
