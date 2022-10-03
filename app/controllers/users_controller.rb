@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def profile
     @user_id = decode_token
     if @user_id
-      render json: User.find_by!(id: @user_id)
+      render json: User.find_by!(id: @user_id), serializer: UserEntriesSerializer
     else 
       render json: {error: "401 incorrect token"}, status: 401
     end
@@ -19,21 +19,21 @@ class UsersController < ApplicationController
     render json: {user:@user, jwt: @token}, status: :created
   end
 
+  #PATCH /users/1 
+  def update 
+    if @user.update(user_params)
+      render json: @user 
+    else 
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
   # TODO: Allow users to update their user info and delete their account
 
-  # # PATCH/PUT /users/1
-  # def update
-  #   if @user.update(user_params)
-  #     render json: @user
-  #   else
-  #     render json: @user.errors, status: :unprocessable_entity
-  #   end
-  # end
-
-  # # DELETE /users/1
-  # def destroy
-  #   @user.destroy
-  # end
+   # DELETE /users/1
+   def destroy
+    @user.destroy
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

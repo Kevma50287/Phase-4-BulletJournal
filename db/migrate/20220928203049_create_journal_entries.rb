@@ -5,6 +5,7 @@ class CreateJournalEntries < ActiveRecord::Migration[7.0]
       t.datetime :date
       t.string :emotion
       t.string :entry
+      t.string :activities, array:true, default: []
 
       t.timestamps
     end
