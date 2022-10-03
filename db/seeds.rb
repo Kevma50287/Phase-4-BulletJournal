@@ -5,3 +5,77 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+User.create!(
+  username: "Kevin",
+  email:"magavakevin10@gmail.com",
+  first_name: "Kevin",
+  last_name: "Ma",
+  phone_number: "347-935-7112",
+  password: "123"
+)
+
+User.create!(
+  username: "K",
+  email:"123@gmail.com",
+  first_name: "Kevin",
+  last_name: "Ma",
+  phone_number: "347-935-7112",
+  password: "123"
+)
+
+Journal.create!(
+  name:"Test",
+)
+
+Journal.create!(
+  name:"Test Shared",
+)
+
+
+SharedJournal.create!(
+  user_id:2,
+  journal_id:2
+)
+
+SharedJournal.create!(
+  user_id:1,
+  journal_id:2
+)
+
+SharedJournal.create!(
+  user_id:1,
+  journal_id:1
+)
+
+JournalEntry.create!(
+  journal_id:1,
+  date:"2022-10-03",
+  emotion:"depressed",
+  entry:"Beep Boop 123",
+  activities:["study", "workout"]
+)
+
+JournalEntry.create!(
+  journal_id:1,
+  date:"2022-10-02",
+  emotion:"depressed",
+  entry:"sdfsdfsdf",
+  activities:["workout"]
+)
+
+JournalEntry.create!(
+  journal_id:2,
+  date:"2022-10-03",
+  emotion:"neutral",
+  entry:"leeloooo",
+  activities:["study", "workout"]
+)
+
+JournalEntry.create!(
+  journal_id:2,
+  date:"2022-10-05",
+  emotion:"happy",
+  entry:"Swiggidy swagagidy",
+  activities:["workout"]
+)
