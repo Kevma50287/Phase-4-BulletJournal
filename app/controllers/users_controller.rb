@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /profile
   def profile
     @user_id = decode_token
+    puts "user id: #{@user_id}"
     if @user_id
       render json: User.find_by!(id: @user_id), serializer: UserJournalsSerializer
     else 

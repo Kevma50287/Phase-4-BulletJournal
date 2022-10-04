@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import { setUser } from '../Slices/userSlice'
 
 const LoginPage = () => {
   //States
@@ -10,10 +12,29 @@ const LoginPage = () => {
   }
   const[loginCredentials,setLoginCredentials] = useState(initialLoginState)
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
 
   //UseEffects
 
   useEffect (() => {
+    //Saves the fetch data to state
+    const getUserProfile = async () => {
+      const res = await axios.get('http://localhost:3000/profile', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        }
+      })
+      const data = res.data
+      if (data){
+        dispatch(setUser(data))
+        navigate(`/user/${data.username}/`)
+      } else {
+        console.log("Error - Invalid Token")
+        return false
+      }
+    }
+    //If nil is not returned then it was successful, and state has been updated
+  
     getUserProfile()
   }, [])
 
@@ -24,16 +45,6 @@ const LoginPage = () => {
         {...loginCredentials,
         [name]:value}
     )
-  }
-
-  const getUserProfile = async () => {
-    const res = await axios.get('http://localhost:3000/profile', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
-      }
-    })
-    const data = res.data
-    return data
   }
 
   const navigateToSignup = () => {

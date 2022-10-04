@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../Slices/userSlice'
 
 const SignUpPage = () => {
   //States
   const initialSignUpState = {
     username: "",
+    first_name:"",
+    last_name:"",
+    email:"",
+    phone_number:"",
     password: "",
     password_confirmation:""
   }
   const[signUpCredentials,setSignUpCredentials] = useState(initialSignUpState)
+  const[anyErrors,setAnyErrors] = useState([])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   //Handlers
   const handleSignUpCredentials = (e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -18,16 +27,33 @@ const SignUpPage = () => {
         {...signUpCredentials,
         [name]:value}
     )
+    
   }
 
+  console.log(signUpCredentials)
   const navigateToLogin = () => {
     navigate('/login')
+  }
+
+  const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const res = await axios.post('http://localhost:3000/users', {user:{...signUpCredentials}})
+      const data = res.data
+      if (data){
+        dispatch(setUser(data))
+        navigate(`/user/${data.username}/`)
+      }
+    } catch (err:any) {
+      setAnyErrors(err.response.data.errors)
+    }
+    
   }
 
   return (
     <>
         <h5>Please SignUp:</h5>
-        <form id="signUp-form">
+        <form id="signUp-form" onSubmit={handleSignUp}>
           <div>
             <input 
               type='text'
@@ -35,6 +61,46 @@ const SignUpPage = () => {
               className='authFormInputs'
               value={signUpCredentials.username}
               placeholder='Username'
+              onChange={handleSignUpCredentials}
+            />
+          </div>
+          <div>
+            <input 
+              type='text'
+              name='first_name'
+              className='authFormInputs'
+              value={signUpCredentials.first_name }
+              placeholder='First Name'
+              onChange={handleSignUpCredentials}
+            />
+          </div>
+          <div>
+            <input 
+              type='text'
+              name='last_name'
+              className='authFormInputs'
+              value={signUpCredentials.last_name }
+              placeholder='Last Name'
+              onChange={handleSignUpCredentials}
+            />
+          </div>
+          <div>
+            <input 
+              type='email'
+              name='email'
+              className='authFormInputs'
+              value={signUpCredentials.email }
+              placeholder='Email'
+              onChange={handleSignUpCredentials}
+            />
+          </div>
+          <div>
+            <input 
+              type='tel'
+              name='phone_number'
+              className='authFormInputs'
+              value={signUpCredentials.phone_number }
+              placeholder='Phone-Number'
               onChange={handleSignUpCredentials}
             />
           </div>
@@ -58,6 +124,8 @@ const SignUpPage = () => {
               onChange={handleSignUpCredentials}
             />
           </div>
+          {/* TODO: ADD CSS to error messages */}
+          {anyErrors && anyErrors.map(err => <div>{err}</div>)}
           <button type='submit'>SignUp</button>
           <h5 className="authButton" onClick={navigateToLogin}><u>Go to Login</u></h5>
         </form>

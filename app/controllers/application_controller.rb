@@ -42,7 +42,7 @@ class ApplicationController < ActionController::API
 
   # Dynamic error handling functions
   def render_not_found(exception)
-    render json: {errors:"#{exception.model} not found"}, status: :render_not_found
+    render json: {errors:"#{exception.model} not found"}, status: 404
   end
 
   def render_unprocessable(exception)
