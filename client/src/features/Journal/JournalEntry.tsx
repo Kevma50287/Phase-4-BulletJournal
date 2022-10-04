@@ -32,6 +32,10 @@ const Journal = () => {
     }
   }
   const [journalEntry, setJournalEntry] = useState(initialState)
+  const [addEntry, setAddEntry] = useState({})
+  const [addingEntry, setAddingEntry] = useState(false)
+
+
 
   //Generate dateObj
 
@@ -70,12 +74,27 @@ const Journal = () => {
   // TODO:Add useEffect on dateObj to fetch relevant data of the selectedDate
 
   //TODO: Add submit to backend 
-  const handleSave = (e: any) => {
-    e.preventDefault()
-  }
+   const handleSave = async (e: any) => {
+     e.preventDefault()
+      await fetch(`http://localhost:3000/journals`, {
+       method: 'POST',
+      headers: {
+         'Content-Type': 'application/json'
+      }, 
+       body: JSON.stringify({
+
+          
+       })
+     })
+     .then(req => req.json())
+     .then(res => {
+
+     })
+   }
 
   //TODO: Add delete entry
 
+  
   
   return (
     <div id="journal">
@@ -95,5 +114,5 @@ const Journal = () => {
     </div>
   )
 }
-
+ 
 export default Journal
