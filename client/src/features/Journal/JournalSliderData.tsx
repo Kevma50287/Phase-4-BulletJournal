@@ -4,7 +4,7 @@ import JournalImage from '../../Journal.png'
 
 export const JournalSliderData = [
     {
-        image: JournalImag
+        image: JournalImage
     },
     {
         image: 'https://images.freeimages.com/variants/wJdG4pYDgnLaJo9m7wy61VPt/b6679d1569eb20491ea73c07cf4bfc2406d426757005363d05f4184a67cad3c1'
