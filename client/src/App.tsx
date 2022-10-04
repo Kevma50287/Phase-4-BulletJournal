@@ -11,6 +11,7 @@ import LoginPage from './features/UserAuth/LoginPage';
 import SignUpPage from './features/UserAuth/SignUpPage';
 import store from './store';
 import JournalEntry from './features/Journal/JournalEntry'
+import Profile from './features/Profile'
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
                 <Route path='settings' element={<Settings/>}/>
                 {/* TODO: Add statistics and profile */}
                 {/* <Route path='stats' element={<Statistics/>}/> */}
-                {/* <Route path='profile' element={<Profile/>}/> */}
+                <Route path='profile' element={<Profile/>}/> 
               </Route>
             </Routes>
           </div>
