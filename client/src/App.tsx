@@ -10,6 +10,7 @@ import { JournalSliderData } from './features/Journal/JournalSliderData';
 import LoginPage from './features/UserAuth/LoginPage';
 import SignUpPage from './features/UserAuth/SignUpPage';
 import store from './store';
+import JournalEntry from './features/Journal/JournalEntry'
 
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
               {/* If the user is not logged in then unauthorized should be returned */}
               <Route path='/user/:username' element={<Layout/>}>
                 {/*<Route index element={<Journal/>}/>*/}
-                <Route path='journals' element={<JournalSlider slides={JournalSliderData}/>}/> 
+                <Route path='journals/:journal_id' element={<JournalSlider slides={JournalSliderData}/>}>
+                  <Route path='journal_entries/:journal_entry_id' element={<JournalEntry/>}/>
+                </Route>
                 <Route path='calendar' element={<Calendar/>}/>
                 <Route path='settings' element={<Settings/>}/>
                 {/* TODO: Add statistics and profile */}
