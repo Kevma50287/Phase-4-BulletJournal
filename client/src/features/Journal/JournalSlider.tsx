@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
  import { JournalSliderData } from './JournalSliderData';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa'
+import { useAppSelector } from '../../hooks';
+import JournalImage from '../../Journal.png'
 
-interface props {
-    slides: {image:string}[]
-}
+// interface props {
+//     journals: {image:string}[]
+// }
 
-const JournalSlider = ({slides}:props) => {
+const JournalSlider = () => {
      const [current, setCurrent] = useState(0);
-     const length = slides.length 
+     const journals = useAppSelector(state => state.user.journals)
+     const length = journals.length 
      
      /*check if current = length - 1 */
-
       
      const nextSlide = () => {
          setCurrent(current === length - 1 ? 0 : current + 1)
@@ -23,7 +25,7 @@ const JournalSlider = ({slides}:props) => {
         
     console.log(current);
 
-     if(!Array.isArray(slides) || slides.length <= 0) {
+     if(!Array.isArray(journals) || journals.length <= 0) {
         return null;
      }
 
@@ -32,16 +34,15 @@ const JournalSlider = ({slides}:props) => {
         <section className='slider'>
             <FaArrowAltCircleLeft className = "left-arrow" onClick = {prevSlide} />
             <FaArrowAltCircleRight className='right-arrow' onClick ={nextSlide} /> 
-         {JournalSliderData.map((slide, index) => {
+         {journals.map((slide, index) => {
         return (
-            <div className = {index === current ? 'slide active' : 'slide'}
-             key = {index}
+            <div 
+                className = {index === current ? 'slide active' : 'slide'}
+                key = {index}
             >
-            
-            {index === current && ( 
-            <img src={slide.image} alt="random image" className='ex-image' /> 
-            )}
-
+                {index === current && ( 
+                <img src={JournalImage} alt="random" className='ex-image' /> 
+                )}
             </div>
         );
         
