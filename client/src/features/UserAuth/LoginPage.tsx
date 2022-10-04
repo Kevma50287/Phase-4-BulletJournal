@@ -34,7 +34,6 @@ const LoginPage = () => {
       }
     }
     //If nil is not returned then it was successful, and state has been updated
-  
     getUserProfile()
   }, [])
 
