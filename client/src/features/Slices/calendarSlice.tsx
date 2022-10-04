@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { CalendarState } from '../../types/CalendarType';
 
+//Dates saved as an ISOString
 const currentDate = new Date().toISOString()
 
 const initialState:CalendarState = {

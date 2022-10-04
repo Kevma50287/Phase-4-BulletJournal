@@ -1,6 +1,8 @@
 export interface UserState {
-  username:string
-
+  id:number | null,
+  username:string | null,
+  journals:Array<Object>,
+  email:string | null
 }
 
 /*
