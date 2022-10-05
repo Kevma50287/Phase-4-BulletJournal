@@ -7,11 +7,26 @@ class AuthController < ApplicationController
     if @user&.authenticate(user_login_params[:password])
       # encode token comes from ApplicationController
       token = generate_token(@user.id)
-      render json: { user: @user, jwt: token }, status: :accepted
+      # FIXME: Refactor
+      render json: { user: @user, jwt: token, journals: @user.journals}, status: :accepted
     else
       render json: { message: 'Invalid username or password' }, status: :unauthorized
     end
   end
+
+  # TODO:Check this
+  # def create
+  #   @user = User.find_by(username: user_login_params[:username])
+  #   #User#authenticate comes from BCrypt
+  #   if @user&.authenticate(user_login_params[:password])
+  #     # encode token comes from ApplicationController
+  #     token = generate_token(@user.id)
+  #     cookies[:jwt] ||= token
+  #     render json: { user: @user, cookies: cookies.to_hash }, status: :accepted
+  #   else
+  #     render json: { message: 'Invalid username or password' }, status: :unauthorized
+  #   end
+  # end
 
   private
 

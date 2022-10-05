@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { useAppDispatch } from '../../hooks'
 import { setUser } from '../Slices/userSlice'
 
 const LoginPage = () => {
@@ -14,6 +14,7 @@ const LoginPage = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
+<<<<<<< HEAD
   //UseEffects
 
   useEffect (() => {
@@ -38,6 +39,8 @@ const LoginPage = () => {
     getUserProfile()
   }, [])
 
+=======
+>>>>>>> JournalEntries
   //Handlers
   const handleLoginCredentials = (e: React.ChangeEvent<HTMLInputElement>)=>{
     const{name,value} = e.target
@@ -64,7 +67,9 @@ const LoginPage = () => {
         const data = response.data
         const jsonWebToken = data.jwt
         const user = data.user
-        console.log(data)
+        const journals = data.journals
+        const userObj = {...user, journals:journals}
+        dispatch(setUser(userObj))
         localStorage.setItem("jwt", jsonWebToken)
         navigate(`/user/${user.username}/`)
       }

@@ -1,4 +1,5 @@
 import React from 'react'
+import uuid from 'react-uuid'
 import bookAndLamp from '../../images/bookAndLamp.svg'
 import foodPlate from '../../images/foodPlate.svg'
 import gameController from '../../images/gameController.svg'
@@ -34,7 +35,7 @@ const DailyActivityCheck = ({setActivities, currentActivities}:ActivityCheckProp
     const key = Object.keys(image)[0]
     const value = image[key]
     return (
-      <ActivityButton image={key} name={value} setActivities={setActivities} currentActivities={currentActivities} />
+      <ActivityButton key={uuid()} image={key} name={value} setActivities={setActivities} currentActivities={currentActivities} />
     )
   })
 

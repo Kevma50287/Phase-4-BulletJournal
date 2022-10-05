@@ -1,23 +1,55 @@
 import { Settings } from '@mui/icons-material';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.scss';
 import Layout from './components/Layouts/Layout';
 import LoginLayout from './components/Layouts/LoginLayout';
 import Calendar from './features/Calendar/Calendar';
 import JournalSlider from './features/Journal/JournalSlider';
-import { JournalSliderData } from './features/Journal/JournalSliderData';
 import LoginPage from './features/UserAuth/LoginPage';
 import SignUpPage from './features/UserAuth/SignUpPage';
-import store from './store';
 import JournalEntry from './features/Journal/JournalEntry'
+<<<<<<< HEAD
 import Profile from './features/Profile'
+=======
+import { useEffect } from 'react';
+import axios from 'axios';
+import { setUser } from './features/Slices/userSlice';
+import { useAppSelector } from './hooks';
+>>>>>>> JournalEntries
 
 
 function App() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = useAppSelector(state => state.user)
+  const location = useLocation().pathname
+
+  const getUserProfile = async () => {
+    const res = await axios.get('http://localhost:3000/profile', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+      }
+    })
+    const data = res.data
+    if (data){
+      dispatch(setUser(data))
+      if (location === '/' || location === '/login'){
+        navigate(`/user/${data.username}/`)
+      }
+    } else {
+      console.log("Error - Invalid Token")
+      return false
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('jwt') && (user.id === null)){
+      getUserProfile()
+    }
+  }, [])
+
   return (
-    <Provider store={store} >
-      <BrowserRouter>
         <div className="App">
           <div>
             <Routes>
@@ -42,9 +74,7 @@ function App() {
             </Routes>
           </div>
         </div>
-      </BrowserRouter>
-    </Provider>
   );
 }
 
-export default App;
+export default App

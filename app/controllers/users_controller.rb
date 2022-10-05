@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user_id = decode_token
     puts "user id: #{@user_id}"
     if @user_id
-      render json: User.find_by!(id: @user_id), serializer: UserJournalsSerializer
+      render json: User.find_by!(id: @user_id)
     else 
       render json: {error: "401 incorrect token"}, status: 401
     end
@@ -16,8 +16,24 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.create!(user_params)
+    
+    @first_journal = Journal.create!({
+      name:"Yumo Journal"
+      }
+    )
+    #Default primary journal id is set
+    #Default mood is neutral
+    @user.update!({
+      primary_journal_id: @first_journal.id,
+      recent_mood: 'neutral'
+      }
+    )
+    SharedJournal.create!({
+      journal_id:@first_journal.id,
+      user_id:@user.id
+    })
     @token = generate_token(@user.id)
-    render json: {user:@user, jwt: @token}, status: :created
+    render json: {user: @user, jwt: @token, journals: @user.journals}, status: :created
   end
 
   # TODO: Allow users to update their user info and delete their account
@@ -43,7 +59,7 @@ class UsersController < ApplicationController
   end
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:email, :username, :password_confirmation, :password, :first_name, :last_name, :phone_number)
+    params.require(:user).permit(:email, :username, :password_confirmation, :password, :first_name, :last_name, :phone_number, :primary_journal_id)
   end
 
     
