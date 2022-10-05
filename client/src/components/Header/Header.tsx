@@ -1,12 +1,16 @@
 import { Person, BarChart, Search, CalendarMonth, AutoStories } from '@mui/icons-material'
 import './Header.scss'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add';
+import { useState } from 'react';
 
 const Header = () => {
   //useParams to retrieve username for proper routing
   const params = useParams()
   const username = params.username
+  const paramJournalId = params.journal_id
+  
+  console.log(paramJournalId)
   return (
     <div id="header">
       <div className='icon-container'>
@@ -23,7 +27,7 @@ const Header = () => {
         <Search className='header-icon' />
       </div>
       <div className='icon-container'>
-        <Link to={`/user/${username}/journals`}>
+        <Link to={`/user/${username}/journal`}>
           <AutoStories className='header-icon' />  
         </Link>
       </div>

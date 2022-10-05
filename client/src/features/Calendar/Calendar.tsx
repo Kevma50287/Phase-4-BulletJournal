@@ -12,6 +12,7 @@ const Calendar = () => {
   const currentDate = useAppSelector((state) => state.calendar.currentDate)
   const selectedDate = useAppSelector((state) => state.calendar.selectedDate)
 
+  const user = useAppSelector(state => state.user)
   //Array of months and days. Will retrieve value at index selectedMonth
   const daysArr = ['Sun', 'Mon', 'Tue','Wed', 'Thu', 'Fri', 'Sat']
   const monthNames = ["January", "February", "March", "April", "May", "June",

@@ -8,7 +8,7 @@ export default function EditProfile() {
 
   const user = useAppSelector((store) => store.user);
   
-// handle change function to update 
+// handle change function to update objecct way OBJKETJFHRJ
 
 // handle submit function 
   const [userInfo, setUserInfo] = useState({...user})
@@ -17,11 +17,10 @@ export default function EditProfile() {
 // writing patch 
 const editProfile = async () => {
 const res = await axios
-        .patch(`http://localhost:5000/user/${userInfo.username}/edit`, {
+        .patch(`http://localhost:5000/user/${userInfo.username}/edit`, userInfo, {
             headers: { 
                 Authorization: `Bearer ${localStorage.getItem('jwt')}` 
-            },
-            body: JSON.stringify(userInfo)
+            }
         })
     console.log(res);
 

@@ -33,9 +33,10 @@ const Journal = () => {
   }
   const [journalEntry, setJournalEntry] = useState(initialState)
   const [addEntry, setAddEntry] = useState({})
-  const [addingEntry, setAddingEntry] = useState(false)
+ 
+ // when boolean is false its going to show header when its true it wont show header 
 
-
+ // 
 
   //Generate dateObj
 

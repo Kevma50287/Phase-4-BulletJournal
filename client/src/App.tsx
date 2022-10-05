@@ -9,14 +9,12 @@ import JournalSlider from './features/Journal/JournalSlider';
 import LoginPage from './features/UserAuth/LoginPage';
 import SignUpPage from './features/UserAuth/SignUpPage';
 import JournalEntry from './features/Journal/JournalEntry'
-<<<<<<< HEAD
 import Profile from './features/Profile'
-=======
 import { useEffect } from 'react';
 import axios from 'axios';
 import { setUser } from './features/Slices/userSlice';
 import { useAppSelector } from './hooks';
->>>>>>> JournalEntries
+
 
 
 function App() {
