@@ -29,10 +29,10 @@ function App() {
               {/* TODO: The username routes should only be accessible if the user is logged in */}
               {/* If the user is not logged in then unauthorized should be returned */}
               <Route path='/user/:username' element={<Layout/>}>
-                {/*<Route index element={<Journal/>}/>*/}
-                <Route path='journals/:journal_id' element={<JournalSlider slides={JournalSliderData}/>}>
-                  <Route path='journal_entries/:journal_entry_id' element={<JournalEntry/>}/>
+                <Route index element={<Profile/>}/>
+                <Route path='journals' element={<JournalSlider/>}> 
                 </Route>
+                <Route path='journals/:journal_id/journal_entries/:journal_entry_id' element={<JournalEntry/>}/>
                 <Route path='calendar' element={<Calendar/>}/>
                 <Route path='settings' element={<Settings/>}/>
                 {/* TODO: Add statistics and profile */}

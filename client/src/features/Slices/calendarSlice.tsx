@@ -43,4 +43,5 @@ export const calendarSlice = createSlice({
 
 export const {setSelectedDate, incrementSelectedDateMonth, incrementSelectedDateYear, 
   decrementSelectedDateMonth, decrementSelectedDateYear} = calendarSlice.actions
+
 export default calendarSlice.reducer

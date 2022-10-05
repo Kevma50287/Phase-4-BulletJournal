@@ -10,7 +10,7 @@ const LoginPage = () => {
     username: "",
     password: ""
   }
-  const[loginCredentials,setLoginCredentials] = useState(initialLoginState)
+  const[loginCredentials,setLoginCredentials] = useState(initialLoginState) /* "" */
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
@@ -27,6 +27,7 @@ const LoginPage = () => {
       const data = res.data
       if (data){
         dispatch(setUser(data))
+        console.log(data)
         navigate(`/user/${data.username}/`)
       } else {
         console.log("Error - Invalid Token")
