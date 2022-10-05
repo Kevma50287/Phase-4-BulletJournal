@@ -42,6 +42,9 @@ const SignUpPage = () => {
       const data = res.data
       //If signup succeeds, we set the user data and navigate to homepage
       if (data){
+        // const journals = data.journals
+        // const userObj = {...user, journals:journals}
+        // dispatch(setUser(data.userObj))
         dispatch(setUser(data))
         navigate(`/user/${data.username}/`)
       }

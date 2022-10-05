@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { useAppDispatch } from '../../hooks'
 import { setUser } from '../Slices/userSlice'
 
 const LoginPage = () => {
@@ -13,29 +13,6 @@ const LoginPage = () => {
   const[loginCredentials,setLoginCredentials] = useState(initialLoginState)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-
-  //UseEffects
-
-  useEffect (() => {
-    //Saves the fetch data to state
-    const getUserProfile = async () => {
-      const res = await axios.get('http://localhost:3000/profile', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('jwt')}`
-        }
-      })
-      const data = res.data
-      if (data){
-        dispatch(setUser(data))
-        navigate(`/user/${data.username}/`)
-      } else {
-        console.log("Error - Invalid Token")
-        return false
-      }
-    }
-    //If nil is not returned then it was successful, and state has been updated
-    getUserProfile()
-  }, [])
 
   //Handlers
   const handleLoginCredentials = (e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -63,7 +40,9 @@ const LoginPage = () => {
         const data = response.data
         const jsonWebToken = data.jwt
         const user = data.user
-        console.log(data)
+        const journals = data.journals
+        const userObj = {...user, journals:journals}
+        dispatch(setUser(userObj))
         localStorage.setItem("jwt", jsonWebToken)
         navigate(`/user/${user.username}/`)
       }

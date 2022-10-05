@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :follows
   resources :shared_journals, only: [:create, :destroy]
   resources :journals do
     resources :journal_entries

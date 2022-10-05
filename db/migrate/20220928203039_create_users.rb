@@ -7,6 +7,8 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :first_name
       t.string :last_name
       t.string :phone_number
+      t.bigint :primary_journal_id
+      t.string :recent_mood
 
       t.timestamps
     end

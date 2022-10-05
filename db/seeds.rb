@@ -13,7 +13,9 @@ User.create!(
   last_name: "Ma",
   phone_number: "347-935-7112",
   password: "123",
-  password_confirmation: "123"
+  password_confirmation: "123",
+  recent_mood:'neutral',
+  primary_journal_id:4
 )
 
 User.create!(
@@ -23,17 +25,49 @@ User.create!(
   last_name: "Ma",
   phone_number: "347-935-7112",
   password: "123",
-  password_confirmation: "123"
+  password_confirmation: "123",
+  recent_mood:'neutral',
+  primary_journal_id:1
+)
+
+User.create!(
+  username: "B",
+  email:"12w33@gmail.com",
+  first_name: "Kevin",
+  last_name: "Ma",
+  phone_number: "347-935-7112",
+  password: "123",
+  password_confirmation: "123",
+  recent_mood:'neutral',
+  primary_journal_id:2
+)
+
+User.create!(
+  username: "Basdas",
+  email:"12was33@gmail.com",
+  first_name: "Kevin",
+  last_name: "Ma",
+  phone_number: "347-935-7112",
+  password: "123",
+  password_confirmation: "123",
+  recent_mood:'neutral',
+  primary_journal_id:3
 )
 
 Journal.create!(
-  name:"Test",
-  user_id: 1
+  name:"Test"
 )
 
 Journal.create!(
-  name:"Test Shared",
-  user_id: 1
+  name:"Test Shared"
+)
+
+Journal.create!(
+  name:"Test Woohoo"
+)
+
+Journal.create!(
+  name:"Test Bang Bang Bang"
 )
 
 
@@ -82,4 +116,24 @@ JournalEntry.create!(
   emotion:"happy",
   entry:"Swiggidy swagagidy",
   activities:["workout"]
+)
+
+Follow.create!(
+  follower_id: 1,
+  followed_user_id:2
+)
+
+Follow.create!(
+  follower_id: 1,
+  followed_user_id:3
+)
+
+Follow.create!(
+  follower_id: 1,
+  followed_user_id:4
+)
+
+Follow.create!(
+  follower_id: 2,
+  followed_user_id:4
 )

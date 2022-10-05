@@ -5,8 +5,6 @@ import AddIcon from '@mui/icons-material/Add';
 
 const Header = () => {
   //useParams to retrieve username for proper routing
-  const location = useLocation()
-  console.log(location)
   const params = useParams()
   const username = params.username
   return (
