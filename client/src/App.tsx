@@ -37,7 +37,6 @@ function App() {
     })
     const data = res.data
     const primary_journal_id = data.primary_journal_id
-    console.log(primary_journal_id)
     const resEntries = await axios.get(`http://localhost:3000/journals/${primary_journal_id}/journal_entries`, {
       headers: {
         Authorization: `Bearer ${cookieString}`

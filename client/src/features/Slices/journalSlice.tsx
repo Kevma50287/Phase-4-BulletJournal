@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { JournalState } from '../../types/JournalType'
+import { JournalEntry, JournalState } from '../../types/JournalType'
 
 const initialState:JournalState = {
   currentJournalId: 0,
@@ -10,7 +10,7 @@ export const journalSlice = createSlice({
   name: "journal",
   initialState: initialState,
   reducers:{
-    setJournalEntries: (state, action:PayloadAction<Array<Object>>) => {
+    setJournalEntries: (state, action:PayloadAction<Array<JournalEntry>>) => {
       state.journal_entries = action.payload
     },
     setCurrentJournalId: (state, action: PayloadAction<number>) => {

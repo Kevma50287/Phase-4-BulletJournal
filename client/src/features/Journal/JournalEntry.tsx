@@ -5,14 +5,11 @@ import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
+import axios from 'axios'
+import { journalProps } from '../../types/JournalType'
 
 // Need to type the key of the object as a string
-interface journalProps {
-  emotion:string,
-  entry:string, 
-  date:string,
-  activities:{[key:string]:boolean}
-}
+
 
 const Journal = () => {
   const navigate = useNavigate()
@@ -67,43 +64,33 @@ const Journal = () => {
 
   //Create the initial state
   const initialState = createInitialState(currentEntry, blankState)
+  //Controlled form inputs
+  const [journalEntry, setJournalEntry] = useState(initialState)
+
 
   //Whenever the params or currentEntry changes we need to update the state
   useEffect(() => {
+    //isMounted flag for the return function so state changes will not be made if params change outside of ./journal_entries
     let isMounted = true;
     if (isMounted){
       const updatedState = createInitialState(currentEntry, blankState)
       setJournalEntry(updatedState)
     };
+    //cleanup function
     return () => {
       isMounted = false;
     }
-  }, [params, currentEntry])
-
-  //Controlled form inputs
-  const [journalEntry, setJournalEntry] = useState(initialState)
-
-  
+  }, [params, currentEntry]) //blanState not expected to ever change so not included
 
 
-
-
-//   const [addEntry, setAddEntry] = useState({})
- 
-//  // when boolean is false its going to show header when its true it wont show header 
-
-//  // 
-
-//   //Generate dateObj
-
-const handlePageChange = (n:number) => {
-  const newPage = currentEntryId + n
-  if (newPage > 0 && newPage <= journalEntriesLength){
-    navigate(`/user/${params.username}/journals/${params.journal_id}/journal_entries/${newPage}`)
-  } else {
-    alert("No more entries")
+  const handlePageChange = (n:number) => {
+    const newPage = currentEntryId + n
+    if (newPage > 0 && newPage <= journalEntriesLength){
+      navigate(`/user/${params.username}/journals/${params.journal_id}/journal_entries/${newPage}`)
+    } else {
+      alert("No more entries")
+    }
   }
-}
 
 /////////////////////////// DATE HANDLERS ///////////////////////////////
 
@@ -141,21 +128,39 @@ const handlePageChange = (n:number) => {
 
   //TODO: Add submit to backend 
    const handleSave = async (e: any) => {
-     e.preventDefault()
-      await fetch(`http://localhost:3000/journals`, {
-       method: 'POST',
-      headers: {
-         'Content-Type': 'application/json'
-      }, 
-       body: JSON.stringify({
+    e.preventDefault()
+    const cookieString = document.cookie.split('jwt=')[1]
+    const activityKeyValuePairArray = Object.entries(journalEntry.activities)
+    const activityArray = activityKeyValuePairArray.filter(([key, value]) => value).map((arr) => arr[0])
+    const formattedPatchObj = {...journalEntry, activities:activityArray}
+    const res = await axios.patch(
+      `http://localhost:3000/journals/${params.journal_id}/journal_entries/${currentEntry.id}`,
+      formattedPatchObj,
+      {
+        headers: { 
+          Authorization: `Bearer ${cookieString}` 
+        }
+      }
+    ) 
+    const data = res.data
+    console.log(data)
+
+
+
+    //   await fetch(`http://localhost:3000/journals`, {
+    //    method: 'POST',
+    //   headers: {
+    //      'Content-Type': 'application/json'
+    //   }, 
+    //    body: JSON.stringify({
 
           
-       })
-     })
-     .then(req => req.json())
-     .then(res => {
+    //    })
+    //  })
+    //  .then(req => req.json())
+    //  .then(res => {
 
-     })
+    //  })
    }
 
   //TODO: Add delete entry
