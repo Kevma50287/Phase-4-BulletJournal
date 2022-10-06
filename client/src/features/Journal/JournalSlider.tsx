@@ -72,13 +72,17 @@ const JournalSlider = () => {
      if(!Array.isArray(journals) || journals.length <= 0) {
         return null;
      }
-
+      
+     // POST REQUEST 
      const handleFormModal = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-
-        
+        e.preventDefault()  
 
      }
+
+     //DELETE REQUEST - MAKE TRASHCAN APPEAR 
+
+
+     //PATCH
 
      const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputName(e.target.value)
