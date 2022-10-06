@@ -19,7 +19,7 @@ const Header = () => {
         </Link>
       </div>
       <div className='icon-container'>
-        <Link to={``}>
+        <Link to={`/user/${username}/journals`}>
           <AddIcon className='header-icon' />
         </Link>
       </div>

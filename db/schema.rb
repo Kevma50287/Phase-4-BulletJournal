@@ -21,13 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_192318) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "friendships", force: :cascade do |t|
-    t.integer "person_one"
-    t.integer "person_two"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "journal_entries", force: :cascade do |t|
     t.bigint "journal_id", null: false
     t.datetime "date"
@@ -41,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_192318) do
 
   create_table "journals", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

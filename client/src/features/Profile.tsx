@@ -23,7 +23,7 @@ export default function Profile() {
             src='https://a.ltrbxd.com/resized/avatar/upload/6/3/1/3/7/9/4/shard/avtr-0-1000-0-1000-crop.jpg?v=77f97932b5'
             alt="profile" 
             />
-            <Link className="link-to-edit" to={`/edit`}><button className="edit-button">Edit Profile</button></Link> 
+            <Link className="link-to-edit" to={`/user/${user.username}/edit`}><button className="edit-button">Edit Profile</button></Link> 
         </div>
         <div>
             <h1 className='quote-text'> "Dont be lame"

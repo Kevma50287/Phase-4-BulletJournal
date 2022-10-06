@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { setUser } from './features/Slices/userSlice';
 import { useAppSelector } from './hooks';
+import EditProfile from './features/EditProfile';
 
 
 
@@ -68,6 +69,7 @@ function App() {
                 {/* TODO: Add statistics and profile */}
                 {/* <Route path='stats' element={<Statistics/>}/> */}
                 <Route path='profile' element={<Profile/>}/> 
+                <Route path='edit' element={<EditProfile/>}/>
               </Route>
             </Routes>
           </div>

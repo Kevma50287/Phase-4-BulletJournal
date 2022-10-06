@@ -4,11 +4,10 @@ import { useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
 
-
 // Need to type the key of the object as a string
 interface journalProps {
   emotion:string,
-  entry:string,
+  entry:string, 
   date:string,
   activities:{[key:string]:boolean}
 }
@@ -117,3 +116,9 @@ const Journal = () => {
 }
  
 export default Journal
+
+
+{/* <input type="checkbox"  onclick="
+    if (this.checked)
+        ref.current.id('SomeSubmitButton').enable = true;
+"> */}
