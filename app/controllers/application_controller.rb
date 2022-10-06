@@ -5,12 +5,11 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from JWT::DecodeError, with: :render_token_error
 
-  def get_secret_key
-    "i_love_corn"
-  end
+  SECRET_KEY = Rails.application.credentials.secret_key_base
+  
 
   def generate_token(user_id)
-    JWT.encode({user_id:user_id}, get_secret_key)
+    JWT.encode({user_id:user_id}, SECRET_KEY)
   end
 # in order to get decoded token u need a request that has aurhotization header token 
   def auth_header
@@ -22,7 +21,7 @@ class ApplicationController < ActionController::API
     if auth_header 
       token = auth_header.split(' ')[1] #taking string and seperating into an array based on the argument
       # [{user_id: id}, {alg: XXXX}]
-      JWT.decode(token, get_secret_key)[0]["user_id"]
+      JWT.decode(token, SECRET_KEY)[0]["user_id"]
     end
   end
 
@@ -37,7 +36,6 @@ class ApplicationController < ActionController::API
   def logged_in?
     !!current_user
   end
-
 
   private
 
@@ -58,4 +56,5 @@ class ApplicationController < ActionController::API
     # Only allows actions to take place if user has a valid token, aka Logged In
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
   end
+
 end

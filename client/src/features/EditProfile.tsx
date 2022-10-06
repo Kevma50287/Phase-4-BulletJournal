@@ -16,10 +16,11 @@ export default function EditProfile() {
 
 // writing patch 
 const editProfile = async () => {
+  const cookieString = document.cookie.split('jwt=')[1]
 const res = await axios
         .patch(`http://localhost:5000/user/${userInfo.username}/edit`, userInfo, {
             headers: { 
-                Authorization: `Bearer ${localStorage.getItem('jwt')}` 
+                Authorization: `Bearer ${cookieString}` 
             }
         })
     console.log(res);

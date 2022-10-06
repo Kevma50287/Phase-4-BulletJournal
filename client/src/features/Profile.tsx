@@ -10,6 +10,7 @@ export default function Profile() {
   const user = useAppSelector((store) => store.user);
   const [profile, setProfile] = useState([]);
   console.log(user);
+  
 
   return (
     <div className="profile-container">

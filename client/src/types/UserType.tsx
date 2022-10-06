@@ -6,6 +6,9 @@ export interface UserState {
     first_name:string | null,
     last_name:string | null,
     phone_number:string | null,
+    primary_journal_id: number | null
+    friends:Array<Object>
+    recent_mood:string | null
 }
 
 

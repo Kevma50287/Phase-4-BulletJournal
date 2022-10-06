@@ -24,12 +24,15 @@ function App() {
   const location = useLocation().pathname
 
   const getUserProfile = async () => {
+    const cookieString = document.cookie.split('jwt=')[1]
     const res = await axios.get('http://localhost:3000/profile', {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${cookieString}`
       }
     })
     const data = res.data
+    const primary_journal_id = data.primary_journal_id
+
     if (data){
       dispatch(setUser(data))
       if (location === '/' || location === '/login'){
@@ -42,7 +45,8 @@ function App() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('jwt') && (user.id === null)){
+    const cookieString = document.cookie.split('jwt=')[1]
+    if (cookieString && (user.id === null)){
       getUserProfile()
     }
   }, [])

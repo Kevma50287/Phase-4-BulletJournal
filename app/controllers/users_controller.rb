@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
-  before_action :set_user, only: %i[ show update destroy ]
+  # before_action :set_user, only: %i[ show update destroy ]
 
   # GET /profile
   def profile
-    @user_id = decode_token
     puts "user id: #{@user_id}"
+    @user_id = decode_token
     if @user_id
       render json: User.find_by!(id: @user_id)
     else 
@@ -40,11 +40,8 @@ class UsersController < ApplicationController
 
   #PATCH /users/1 
   def update 
-    if @user.update(user_params)
-      render json: @user 
-    else 
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    current_user.update!(user_params)
+    render json: current_user 
   end
   
    # DELETE /users/1
@@ -54,9 +51,9 @@ class UsersController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find_by!(id:params[:id])
-  end
+  # def set_user
+  #   @user = User.find_by!(id:params[:id])
+  # end
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:email, :username, :password_confirmation, :password, :first_name, :last_name, :phone_number, :primary_journal_id)

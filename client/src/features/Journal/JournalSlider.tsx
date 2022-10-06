@@ -15,7 +15,7 @@ const JournalSlider = () => {
      const journals = useAppSelector(state => state.user.journals)
     const navigateToEntry = (slide:any) => {
         const journal_id = slide.id
-        navigate(`/${journal_id}/journal_entries/1`)
+        navigate(`./${journal_id}/journal_entries/1`)
     }
 
      const length = journals.length 
