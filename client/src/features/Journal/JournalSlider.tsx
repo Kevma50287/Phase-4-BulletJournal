@@ -6,10 +6,12 @@ import JournalImage from '../../Journal.png'
 import { useNavigate } from 'react-router-dom';
 import { setCurrentJournalId, setJournalEntries } from '../Slices/journalSlice';
 import axios from 'axios';
-
+import { useOutletContext } from 'react-router-dom';
+import { display } from '@mui/system';
 // interface props {
 //     journals: {image:string}[]
 // }
+
 
 const JournalSlider = () => {
     const dispatch = useAppDispatch()
@@ -17,6 +19,15 @@ const JournalSlider = () => {
     const navigate = useNavigate()
     const [current, setCurrent] = useState(0);
     const journals = useAppSelector(state => state.user.journals)
+    const showModal:any = useOutletContext()
+    console.log(showModal[0])
+    const [inputName, setInputName] = useState('')
+     
+
+     
+
+
+
 
     const fetchEntries = async (id:number) => {
         const cookieString = document.cookie.split('jwt=')[1]
@@ -62,8 +73,36 @@ const JournalSlider = () => {
         return null;
      }
 
+     const handleFormModal = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        
+
+     }
+
+     const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputName(e.target.value)
+  }
+
+     
+
+
+
     return (
         <section className='slider'>
+          
+                {showModal[0] ? <form onSubmit={handleFormModal} >
+                <div className="modal-label">Journal Name</div>
+                   <input onChange={(e) => handleTextInput(e)}
+                    required 
+                    type ="text"
+
+                      />
+                </form> 
+                  :
+                null}
+
+          
             <FaArrowAltCircleLeft className = "left-arrow" onClick = {prevSlide} />
             <FaArrowAltCircleRight className='right-arrow' onClick ={nextSlide} /> 
             {journals.map((slide, index) => {
@@ -85,3 +124,9 @@ const JournalSlider = () => {
 
 
 export default JournalSlider 
+
+
+
+
+
+// toggle true or false if popup 
