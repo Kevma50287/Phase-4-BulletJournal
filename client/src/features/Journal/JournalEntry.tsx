@@ -93,6 +93,12 @@ const Journal = () => {
    }
 
   //TODO: Add delete entry
+  
+  
+
+
+
+  // Add Patch 
 
   
   
