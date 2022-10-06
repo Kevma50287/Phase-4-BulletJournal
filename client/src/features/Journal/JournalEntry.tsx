@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './JournalEntry.scss'
 import { useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
-import { useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
 
 // Need to type the key of the object as a string
 interface journalProps {
@@ -14,16 +15,17 @@ interface journalProps {
 }
 
 const Journal = () => {
+  const navigate = useNavigate()
   const params = useParams()
-  const currentEntryId = params.journal_entry_id
-  const idToNumber = Number(currentEntryId) - 1
+  const currentEntryId = Number(params.journal_entry_id)
+  const idToNumber = currentEntryId - 1
 
   const journalState = useAppSelector(state => state.journal)
   const journalEntries = journalState.journal_entries
+  const journalEntriesLength = journalEntries.length
   
   //Get the latest entry
   const currentEntry = journalEntries[idToNumber]
-  console.log(currentEntry)
 
   const blankState:journalProps = {
     emotion:"",
@@ -63,16 +65,47 @@ const Journal = () => {
     }
   }
 
+  //Create the initial state
   const initialState = createInitialState(currentEntry, blankState)
 
+  //Whenever the params or currentEntry changes we need to update the state
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted){
+      const updatedState = createInitialState(currentEntry, blankState)
+      setJournalEntry(updatedState)
+    };
+    return () => {
+      isMounted = false;
+    }
+  }, [params, currentEntry])
+
+  //Controlled form inputs
   const [journalEntry, setJournalEntry] = useState(initialState)
-  const [addEntry, setAddEntry] = useState({})
+
+  
+
+
+
+
+//   const [addEntry, setAddEntry] = useState({})
  
- // when boolean is false its going to show header when its true it wont show header 
+//  // when boolean is false its going to show header when its true it wont show header 
 
- // 
+//  // 
 
-  //Generate dateObj
+//   //Generate dateObj
+
+const handlePageChange = (n:number) => {
+  const newPage = currentEntryId + n
+  if (newPage > 0 && newPage <= journalEntriesLength){
+    navigate(`/user/${params.username}/journals/${params.journal_id}/journal_entries/${newPage}`)
+  } else {
+    alert("No more entries")
+  }
+}
+
+/////////////////////////// DATE HANDLERS ///////////////////////////////
 
   // FIXME:May need to keep date separate from Calendar State
   const currentDate = useAppSelector((state) => state.calendar.currentDate)
@@ -105,8 +138,6 @@ const Journal = () => {
       setJournalEntry({...journalEntry, emotion:condition})
     }
   }
-
-  // TODO:Add useEffect on dateObj to fetch relevant data of the selectedDate
 
   //TODO: Add submit to backend 
    const handleSave = async (e: any) => {
@@ -142,6 +173,7 @@ const Journal = () => {
       <div id='leftpage'>
         <DailyEmotionCheck setEmotion={handleEmotion} currentEmotion={journalEntry.emotion} />
         <DailyActivityCheck setActivities={handleActivities} currentActivities={journalEntry.activities} />
+        <FaArrowAltCircleLeft className = "left-arrow"  onClick = {() => handlePageChange(-1)} />
       </div>
       <div id='rightpage'>
         <div id='journal-date'>
@@ -151,6 +183,7 @@ const Journal = () => {
           <textarea id='diary-input' value={journalEntry.entry} onChange={e => handleTextInput(e)}/>
           <button type='submit' id='diary-save-button'> Save Entry </button>
         </form>
+        <FaArrowAltCircleRight className='right-arrow' onClick ={() => handlePageChange(1)} />
       </div>
     </div>
   )
