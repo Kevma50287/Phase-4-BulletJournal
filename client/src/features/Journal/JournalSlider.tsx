@@ -1,21 +1,49 @@
 import React, { useState } from 'react';
  import { JournalSliderData } from './JournalSliderData';
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa'
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import JournalImage from '../../Journal.png'
 import { useNavigate } from 'react-router-dom';
+import { setCurrentJournalId, setJournalEntries } from '../Slices/journalSlice';
+import axios from 'axios';
 
 // interface props {
 //     journals: {image:string}[]
 // }
 
 const JournalSlider = () => {
+    const dispatch = useAppDispatch()
+    const journalState = useAppSelector(state => state.journal)
     const navigate = useNavigate()
-     const [current, setCurrent] = useState(0);
-     const journals = useAppSelector(state => state.user.journals)
-    const navigateToEntry = (slide:any) => {
+    const [current, setCurrent] = useState(0);
+    const journals = useAppSelector(state => state.user.journals)
+
+    const fetchEntries = async (id:number) => {
+        const cookieString = document.cookie.split('jwt=')[1]
+        const res = await axios.get(`http://localhost:3000/journals/${id}/journal_entries`, {
+            headers: {
+                Authorization: `Bearer ${cookieString}`
+            }
+        })
+        const journal_entries = res.data
+        dispatch(setJournalEntries(journal_entries))
+        //return the length of journal entries to use for navigation
+        return journal_entries.length
+    }
+
+
+    const navigateToEntry = async (slide:any) => {
         const journal_id = slide.id
-        navigate(`./${journal_id}/journal_entries/1`)
+        //If the id clicked is not the primary journal, update the primary journal and make a new fetch
+        if (slide.id !== journalState.currentJournalId){
+            dispatch(setCurrentJournalId(slide.id))
+            const length = await fetchEntries(slide.id)
+            navigate(`./${journal_id}/journal_entries/${length}`)
+        } else {
+            const lastEntry = journalState.journal_entries.length
+            navigate(`./${journal_id}/journal_entries/${lastEntry}`)
+        }
+        //Else we will navigate to the last entry of the journal
     }
 
      const length = journals.length 

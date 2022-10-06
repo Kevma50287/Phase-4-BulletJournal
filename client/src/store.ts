@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import calendarReducer from "./features/Slices/calendarSlice";
 import userReducer from "./features/Slices/userSlice"
-
+import journalReducer from "./features/Slices/journalSlice"
 
 const store = configureStore({
   reducer: {
     calendar: calendarReducer,
-    user: userReducer
+    user: userReducer,
+    journal: journalReducer
   }
 });
 

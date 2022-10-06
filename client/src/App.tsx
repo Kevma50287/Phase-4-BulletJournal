@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { setUser } from './features/Slices/userSlice';
 import { useAppSelector } from './hooks';
+import { setCurrentJournalId, setJournalEntries } from './features/Slices/journalSlice';
 
 
 
@@ -32,7 +33,15 @@ function App() {
     })
     const data = res.data
     const primary_journal_id = data.primary_journal_id
-
+    console.log(primary_journal_id)
+    const resEntries = await axios.get(`http://localhost:3000/journals/${primary_journal_id}/journal_entries`, {
+      headers: {
+        Authorization: `Bearer ${cookieString}`
+      }
+    })
+    const journal_entries = resEntries.data
+    dispatch(setJournalEntries(journal_entries))
+    dispatch(setCurrentJournalId(primary_journal_id))
     if (data){
       dispatch(setUser(data))
       if (location === '/' || location === '/login'){
@@ -46,7 +55,7 @@ function App() {
 
   useEffect(() => {
     const cookieString = document.cookie.split('jwt=')[1]
-    if (cookieString && (user.id === null)){
+    if (cookieString && (user.id === 0)){
       getUserProfile()
     }
   }, [])
