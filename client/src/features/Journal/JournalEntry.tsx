@@ -3,6 +3,7 @@ import './JournalEntry.scss'
 import { useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
+import { useParams } from 'react-router-dom'
 
 // Need to type the key of the object as a string
 interface journalProps {
@@ -13,7 +14,18 @@ interface journalProps {
 }
 
 const Journal = () => {
-  const initialState:journalProps = {
+  const params = useParams()
+  const currentEntryId = params.journal_entry_id
+  const idToNumber = Number(currentEntryId) - 1
+
+  const journalState = useAppSelector(state => state.journal)
+  const journalEntries = journalState.journal_entries
+  
+  //Get the latest entry
+  const currentEntry = journalEntries[idToNumber]
+  console.log(currentEntry)
+
+  const blankState:journalProps = {
     emotion:"",
     entry:"",
     date:"",
@@ -30,6 +42,29 @@ const Journal = () => {
       "travel":false
     }
   }
+
+  //Combine latest entry with blank state to create the inital state on page load
+  const createInitialState = (entry:any, blankState:journalProps) => {
+    if (entry === undefined){
+      return blankState
+    } else {
+      //Create a copy of blankState
+      let initialState:journalProps = {...blankState}
+
+      //Update the copy with the most recent entries
+      initialState.emotion = entry.emotion
+      initialState.entry = entry.entry
+      initialState.date = entry.date
+      //For each activity seen, set that activity value to true
+      entry.activities.forEach((activity:string) => {
+        initialState.activities[activity] = true
+      })
+      return initialState
+    }
+  }
+
+  const initialState = createInitialState(currentEntry, blankState)
+
   const [journalEntry, setJournalEntry] = useState(initialState)
   const [addEntry, setAddEntry] = useState({})
  
@@ -110,7 +145,7 @@ const Journal = () => {
       </div>
       <div id='rightpage'>
         <div id='journal-date'>
-          {dateObj.toDateString()}
+          {journalEntry.date.length > 0 ? new Date(journalEntry.date).toDateString() : dateObj.toDateString()}
         </div>
         <form id='diary-input-container' onSubmit={handleSave}>
           <textarea id='diary-input' value={journalEntry.entry} onChange={e => handleTextInput(e)}/>

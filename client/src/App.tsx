@@ -14,7 +14,11 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { setUser } from './features/Slices/userSlice';
 import { useAppSelector } from './hooks';
+
 import EditProfile from './features/EditProfile';
+
+import { setCurrentJournalId, setJournalEntries } from './features/Slices/journalSlice';
+
 
 
 
@@ -25,12 +29,23 @@ function App() {
   const location = useLocation().pathname
 
   const getUserProfile = async () => {
+    const cookieString = document.cookie.split('jwt=')[1]
     const res = await axios.get('http://localhost:3000/profile', {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${cookieString}`
       }
     })
     const data = res.data
+    const primary_journal_id = data.primary_journal_id
+    console.log(primary_journal_id)
+    const resEntries = await axios.get(`http://localhost:3000/journals/${primary_journal_id}/journal_entries`, {
+      headers: {
+        Authorization: `Bearer ${cookieString}`
+      }
+    })
+    const journal_entries = resEntries.data
+    dispatch(setJournalEntries(journal_entries))
+    dispatch(setCurrentJournalId(primary_journal_id))
     if (data){
       dispatch(setUser(data))
       if (location === '/' || location === '/login'){
@@ -43,7 +58,8 @@ function App() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('jwt') && (user.id === null)){
+    const cookieString = document.cookie.split('jwt=')[1]
+    if (cookieString && (user.id === 0)){
       getUserProfile()
     }
   }, [])

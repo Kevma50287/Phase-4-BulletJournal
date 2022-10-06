@@ -97,7 +97,7 @@ JournalEntry.create!(
 JournalEntry.create!(
   journal_id:1,
   date:"2022-10-02",
-  emotion:"depressed",
+  emotion:"neutral",
   entry:"sdfsdfsdf",
   activities:["workout"]
 )

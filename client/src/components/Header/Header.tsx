@@ -8,9 +8,7 @@ const Header = () => {
   //useParams to retrieve username for proper routing
   const params = useParams()
   const username = params.username
-  const paramJournalId = params.journal_id
-  
-  console.log(paramJournalId)
+
   return (
     <div id="header">
       <div className='icon-container'>
@@ -27,7 +25,7 @@ const Header = () => {
         <Search className='header-icon' />
       </div>
       <div className='icon-container'>
-        <Link to={`/user/${username}/journal`}>
+        <Link to={`/user/${username}/journals`}>
           <AutoStories className='header-icon' />  
         </Link>
       </div>

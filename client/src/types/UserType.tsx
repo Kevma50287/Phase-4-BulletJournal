@@ -1,11 +1,14 @@
 export interface UserState {
-    id:number | null,
-    username:string | null,
+    id:number,
+    username:string,
     journals:Array<Object>,
-    email:string | null,
-    first_name:string | null,
-    last_name:string | null,
-    phone_number:string | null,
+    email:string,
+    first_name:string,
+    last_name:string,
+    phone_number:string,
+    primary_journal_id: number
+    friends:Array<Object>
+    recent_mood:string
 }
 
 

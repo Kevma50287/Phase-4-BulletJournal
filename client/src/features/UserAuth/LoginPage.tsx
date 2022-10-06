@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { useAppDispatch } from '../../hooks'
@@ -13,7 +13,6 @@ const LoginPage = () => {
   const[loginCredentials,setLoginCredentials] = useState(initialLoginState) /* "" */
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-
 
   //Handlers
   const handleLoginCredentials = (e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -43,8 +42,9 @@ const LoginPage = () => {
         const user = data.user
         const journals = data.journals
         const userObj = {...user, journals:journals}
+        console.log(response)
         dispatch(setUser(userObj))
-        localStorage.setItem("jwt", jsonWebToken)
+        document.cookie = `jwt=${jsonWebToken}`
         navigate(`/user/${user.username}/`)
       }
     } catch (err:any) {

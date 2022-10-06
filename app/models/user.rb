@@ -5,7 +5,7 @@ class User < ApplicationRecord
   belongs_to :friend, class_name: "User", optional: true
   has_secure_password
 
-  validates_presence_of :email, :first_name, :last_name, :phone_number, :username, :password, :password_confirmation
+  validates_presence_of :email, :first_name, :last_name, :phone_number, :username
   validates_uniqueness_of :username, :email
 
   has_many :received_follows, foreign_key: :followed_user_id, class_name: "Follow"
@@ -19,7 +19,8 @@ class User < ApplicationRecord
   # returns an array of other users who the user has followed
   has_many :followings, through: :given_follows, source: :followed_user
 
-  def friends
+  # FIXME:How to serialize this?
+  def friends_array
     self.followings + self.followers
   end
 end
