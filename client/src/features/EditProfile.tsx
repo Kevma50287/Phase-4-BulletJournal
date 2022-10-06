@@ -42,7 +42,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 const editProfile = async () => {
   const cookieString = document.cookie.split('jwt=')[1]
 const res = await axios
-        .patch(`http://localhost:5000/user/${userInfo.username}/edit`, userInfo, {
+        .patch(`http://localhost:3000/user/${userInfo.username}/edit`, userInfo, {
             headers: { 
                 Authorization: `Bearer ${cookieString}` 
             }

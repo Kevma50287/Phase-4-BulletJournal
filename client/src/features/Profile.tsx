@@ -2,9 +2,10 @@ import React, { useEffect , useState} from 'react'
 import { useAppSelector} from '../hooks'
 import { Link } from 'react-router-dom';
 import "./Profile.scss"
+import { setUser } from './Slices/userSlice';
 
 
-
+// const modal = useAppSelector((store) => store.modal)
 
 export default function Profile() {
   const user = useAppSelector((store) => store.user);

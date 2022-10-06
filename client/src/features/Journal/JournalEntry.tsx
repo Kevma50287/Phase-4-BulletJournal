@@ -4,6 +4,7 @@ import { useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
 import { useParams } from 'react-router-dom'
+import AddIcon from '@mui/icons-material/Add';
 
 // Need to type the key of the object as a string
 interface journalProps {
@@ -128,12 +129,32 @@ const Journal = () => {
    }
 
   //TODO: Add delete entry
+
+  
+
+
   
   
 
 
 
   // Add Patch 
+//   const editProfile = async () => {
+//   const cookieString = document.cookie.split('jwt=')[1]
+// const res = await axios
+//         .patch(`http://localhost:5000/user/${userInfo.username}/edit`, userInfo, {
+//             headers: { 
+//                 Authorization: `Bearer ${cookieString}` 
+//             }
+//         })
+//     console.log(res);
+
+
+//     }
+
+
+
+
 
   
   
@@ -163,3 +184,9 @@ export default Journal
     if (this.checked)
         ref.current.id('SomeSubmitButton').enable = true;
 "> */}
+
+
+{/* <div className='icon-container'>
+          <AddIcon className='header-icon' />
+        
+      </div> */}

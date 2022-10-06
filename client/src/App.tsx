@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { setUser } from './features/Slices/userSlice';
 import { useAppSelector } from './hooks';
+import { useState } from 'react';
 
 import EditProfile from './features/EditProfile';
 
@@ -27,7 +28,7 @@ function App() {
   const navigate = useNavigate()
   const user = useAppSelector(state => state.user)
   const location = useLocation().pathname
-
+  
   const getUserProfile = async () => {
     const cookieString = document.cookie.split('jwt=')[1]
     const res = await axios.get('http://localhost:3000/profile', {
