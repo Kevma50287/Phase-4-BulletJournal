@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAppSelector } from '../hooks'
 import { Link } from 'react-router-dom';
 import "./Profile.scss"
-import { setUser } from './Slices/userSlice';
 import FriendCard from '../components/FriendCard';
 
 

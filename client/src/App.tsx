@@ -46,6 +46,7 @@ function App() {
     const journal_entries = resEntries.data
     dispatch(setJournalEntries(journal_entries))
     dispatch(setCurrentJournalId(primary_journal_id))
+    console.log(data)
     if (data){
       dispatch(setUser(data))
       if (location === '/' || location === '/login'){

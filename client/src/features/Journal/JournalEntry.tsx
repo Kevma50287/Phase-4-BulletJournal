@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import './JournalEntry.scss'
-import { useAppSelector } from '../../hooks'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
 import axios from 'axios'
 import { journalProps } from '../../types/JournalType'
+import { setJournalEntries } from '../Slices/journalSlice';
 
 // Need to type the key of the object as a string
 
 
 const Journal = () => {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const params = useParams()
   const currentEntryId = Number(params.journal_entry_id)
@@ -143,21 +145,7 @@ const Journal = () => {
       }
     )
     const data = res.data
-
-    //   await fetch(`http://localhost:3000/journals`, {
-    //    method: 'POST',
-    //   headers: {
-    //      'Content-Type': 'application/json'
-    //   }, 
-    //    body: JSON.stringify({
-
-
-    //    })
-    //  })
-    //  .then(req => req.json())
-    //  .then(res => {
-
-    //  })
+    dispatch(setJournalEntries(data))
   }
 
   //TODO: Add delete entry
@@ -178,7 +166,7 @@ const Journal = () => {
 
   return (
     <div id="journal">
-      <div id='leftpage'>
+      <div id='leftpage' >
         <DailyEmotionCheck setEmotion={handleEmotion} currentEmotion={journalEntry.emotion} />
         <DailyActivityCheck setActivities={handleActivities} currentActivities={journalEntry.activities} />
         <FaArrowAltCircleLeft className="left-arrow" onClick={() => handlePageChange(-1)} />
