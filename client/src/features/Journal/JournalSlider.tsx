@@ -73,11 +73,21 @@ const JournalSlider = () => {
         return null;
      }
       
+     console.log(journals)
      // POST REQUEST 
-     const handleFormModal = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()  
-
-     }
+     const handleFormModal = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const cookieString = document.cookie.split('jwt=')[1]
+        try {
+            //Axios.HTTPMethod(URL, Object, {headers:{}}) => Object Data
+      const response = await axios.post('http://localhost:5000/journals', {journals:{name:inputName}},{
+        headers: {
+          'Content-Type':'application/json',
+          Authorization:`Bearer ${cookieString}` 
+        }
+      })
+      // If response is accepted then we store the token to local storage
+     
 
      //DELETE REQUEST - MAKE TRASHCAN APPEAR 
 
