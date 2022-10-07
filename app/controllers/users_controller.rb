@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user_id = decode_token
     if @user_id
       @user = User.find_by!(id: @user_id)
-      render json: @user, include: [friends: { only: [:]}]
+      render json: @user
     else 
       render json: {error: "401 incorrect token"}, status: 401
     end

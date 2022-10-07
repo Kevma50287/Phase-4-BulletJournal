@@ -20,7 +20,6 @@ class JournalEntriesController < ApplicationController
     @journal_entry = JournalEntry.new(journal_entry_params.merge({journal_id: params[:journal_id]}))
     if @journal_entry.save
       # Update current user's mood upon submission
-      current_user.recent_mood = @journal_entry.mood
       render json: @journal_entry, status: :created
     else
       render json: @journal_entry.errors, status: :unprocessable_entity

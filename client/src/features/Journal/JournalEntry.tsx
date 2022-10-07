@@ -128,7 +128,7 @@ const Journal = () => {
     }
   }
 
-  //TODO: Add submit to backend 
+  //PATCH
   const handleSave = async (e: any) => {
     e.preventDefault()
     const cookieString = document.cookie.split('jwt=')[1]
@@ -148,20 +148,44 @@ const Journal = () => {
     dispatch(setJournalEntries(data))
   }
 
-  //TODO: Add delete entry
+  //DELETE
+  const handleDelete = async (e: any) => {
+    e.preventDefault()
+    const cookieString = document.cookie.split('jwt=')[1]
+    const res = await axios.delete(
+      `http://localhost:3000/journals/${params.journal_id}/journal_entries/${currentEntry.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${cookieString}`
+        }
+      }
+    )
+    const data = res.data.journal_entry
+    const filter = journalEntries.filter((entry) => entry.id !== data.id)
+    dispatch(setJournalEntries(filter))
+  }
 
 
 
-  // Add Patch 
-  //   const editProfile = async () => {
-  //   const cookieString = document.cookie.split('jwt=')[1]
-  // const res = await axios
-  //         .patch(`http://localhost:5000/user/${userInfo.username}/edit`, userInfo, {
-  //             headers: { 
-  //                 Authorization: `Bearer ${cookieString}` 
-  //             }
-  //         })
-  //     console.log(res);
+  //CREATE
+  const handleCreate = async (e: any) => {
+    e.preventDefault()
+    const cookieString = document.cookie.split('jwt=')[1]
+    const activityKeyValuePairArray = Object.entries(journalEntry.activities)
+    const activityArray = activityKeyValuePairArray.filter(([key, value]) => value).map((arr) => arr[0])
+    const formattedPostObj = { ...journalEntry, activities: activityArray }
+    const res = await axios.post(
+      `http://localhost:3000/journals/${params.journal_id}/journal_entries`,
+      formattedPostObj,
+      {
+        headers: {
+          Authorization: `Bearer ${cookieString}`
+        }
+      }
+    )
+    const data = res.data
+    dispatch(setJournalEntries(data))
+  }
 
 
   return (
@@ -186,15 +210,3 @@ const Journal = () => {
 }
 
 export default Journal
-
-
-{/* <input type="checkbox"  onclick="
-    if (this.checked)
-        ref.current.id('SomeSubmitButton').enable = true;
-"> */}
-
-
-{/* <div className='icon-container'>
-          <AddIcon className='header-icon' />
-        
-      </div> */}
