@@ -145,7 +145,14 @@ const Journal = () => {
       }
     )
     const data = res.data
-    dispatch(setJournalEntries(data))
+    const updated = journalEntries.map((entry) => {
+      if (entry.id === data.id) {
+        return data
+      } else {
+        return entry
+      }
+    })
+    dispatch(setJournalEntries(updated))
   }
 
   //DELETE
@@ -184,7 +191,8 @@ const Journal = () => {
       }
     )
     const data = res.data
-    dispatch(setJournalEntries(data))
+    journalEntries.push(data)
+    dispatch(setJournalEntries(journalEntries))
   }
 
 

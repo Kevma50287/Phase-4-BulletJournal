@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { useAppDispatch } from '../../hooks'
 import { setUser } from '../Slices/userSlice'
+import { setCurrentJournalId, setJournalEntries } from '../Slices/journalSlice'
 
 const LoginPage = () => {
   //States
@@ -41,12 +42,20 @@ const LoginPage = () => {
       if (response.status === 202) {
         const data = response.data
         const jsonWebToken = data.jwt
+        document.cookie = `jwt=${jsonWebToken}`
         const user = data.user
         const journals = data.journals
-        const userObj = { ...user, journals: journals, recent_mood: data.recent_mood }
-        console.log(response)
+        const userObj = { ...user, journals: journals, recent_mood: data.recent_mood, friends: data.friends }
+        const primary_journal_id = user.primary_journal_id
+        const resEntries = await axios.get(`http://localhost:3000/journals/${primary_journal_id}/journal_entries`, {
+          headers: {
+            Authorization: `Bearer ${jsonWebToken}`
+          }
+        })
+        const journal_entries = resEntries.data
+        dispatch(setJournalEntries(journal_entries))
+        dispatch(setCurrentJournalId(primary_journal_id))
         dispatch(setUser(userObj))
-        document.cookie = `jwt=${jsonWebToken}`
         navigate(`/user/${user.username}/`)
       }
     } catch (err: any) {
@@ -56,6 +65,7 @@ const LoginPage = () => {
       alert(error)
     }
   }
+
 
   return (
     <>

@@ -1,7 +1,8 @@
 import { Person, BarChart, Search, CalendarMonth, AutoStories } from '@mui/icons-material'
 import './Header.scss'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
@@ -17,6 +18,7 @@ const Header = ({ setShowModal, showModal }: HeaderProps) => {
 
   //useParams to retrieve username for proper routing
   const location = useLocation().pathname
+  const navigate = useNavigate()
   const areWeAtJournals = (location: string) => {
     const array = location.split("/")
     if (array.includes('journals')) {
@@ -30,6 +32,11 @@ const Header = ({ setShowModal, showModal }: HeaderProps) => {
 
   const handleToggle = () => {
     setShowModal(!showModal)
+  }
+
+  const handleLogout = () => {
+    document.cookie = "jwt= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
+    navigate('/')
   }
 
   return (
@@ -58,6 +65,9 @@ const Header = ({ setShowModal, showModal }: HeaderProps) => {
         <Link to={`/user/${username}/profile`}>
           <Person className='header-icon' />
         </Link>
+      </div>
+      <div className='icon-container'>
+        <LogoutIcon className='header-icon' onClick={handleLogout} />
       </div>
     </div>
   )

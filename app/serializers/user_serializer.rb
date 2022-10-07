@@ -3,7 +3,7 @@ class UserSerializer < ActiveModel::Serializer
   has_many :journals
 
   def friends
-    object.friends_array
+    return object.friends_array
   end
 
   

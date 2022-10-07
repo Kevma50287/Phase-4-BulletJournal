@@ -25,8 +25,7 @@ class UsersController < ApplicationController
     #Default primary journal id is set
     #Default mood is neutral
     @user.update!({
-      primary_journal_id: @first_journal.id,
-      recent_mood: 'neutral'
+      primary_journal_id: @first_journal.id
       }
     )
     SharedJournal.create!({
@@ -34,7 +33,7 @@ class UsersController < ApplicationController
       user_id:@user.id
     })
     @token = generate_token(@user.id)
-    render json: {user: @user, jwt: @token, journals: @user.journals}, status: :created
+    render json: {user: @user, recent_mood:"neutral", jwt: @token, journals: @user.journals, friends:@user.friends_array}, status: :created
   end
 
   # TODO: Allow users to update their user info and delete their account

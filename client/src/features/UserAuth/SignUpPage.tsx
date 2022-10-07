@@ -33,7 +33,6 @@ const SignUpPage = () => {
 
   }
 
-  console.log(signUpCredentials)
   const navigateToLogin = () => {
     navigate('/login')
   }
@@ -43,16 +42,19 @@ const SignUpPage = () => {
     try {
       const res = await axios.post('http://localhost:3000/users', { user: { ...signUpCredentials } })
       const data = res.data
+      console.log(data)
       //If signup succeeds, we set the user data and navigate to homepage
       if (data) {
+        const user = data.user
         // const journals = data.journals
         // const userObj = {...user, journals:journals}
         // dispatch(setUser(data.userObj))
-        dispatch(setUser(data))
+        dispatch(setUser({ ...user, friends: data.friends, recent_mood: data.recent_mood, journals: data.journals }))
         navigate(`/user/${data.username}/`)
       }
     } catch (err: any) { //If errors we save to state and render them on the front for the user to see
       setAnyErrors(err.response.data.errors)
+      console.log(err)
     }
   }
 

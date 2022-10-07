@@ -12,7 +12,7 @@ export default function Profile() {
   const [profile, setProfile] = useState([]);
   console.log(user);
 
-  const friendsArray = user.friends.map(friend => {
+  const friendsArray = user.friends?.map(friend => {
     return (
       <FriendCard friend={friend} />
     )

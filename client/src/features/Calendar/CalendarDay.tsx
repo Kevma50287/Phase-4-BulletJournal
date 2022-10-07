@@ -32,7 +32,7 @@ const CalendarDay = ({ date, isInTheCurrentMonth }: CalendarProps) => {
   })
 
   const index = journal_entries.indexOf(entryForThisDay[0])
-  console.log(index)
+  console.log(index, entryForThisDay)
 
   const emotion = entryForThisDay[0]?.emotion
   const entry = entryForThisDay[0]?.entry

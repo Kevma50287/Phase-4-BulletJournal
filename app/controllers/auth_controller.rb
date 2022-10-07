@@ -9,7 +9,7 @@ class AuthController < ApplicationController
       token = generate_token(@user.id)
       # FIXME: Refactor
       
-      render json: { user:@user, recent_mood:@user.recent_mood, jwt: token, journals: @user.journals}, status: :accepted
+      render json: { user:@user, recent_mood:@user.recent_mood, jwt: token, journals: @user.journals, friends:@user.friends_array}, status: :accepted
     else
       render json: { message: 'Invalid username or password' }, status: :unauthorized
     end
