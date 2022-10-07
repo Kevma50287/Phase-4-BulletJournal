@@ -6,6 +6,7 @@ height: v.$main-height;
 display: flex;
 justify-content: center;
 align-items: center  ;
+
 }
 
 .ex-image {
@@ -45,11 +46,18 @@ margin-top: 20px;
 .slide {
     opacity: 0;
     transition-duration: 1s ease;
+    // position: absolute;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -80%)
+
 }
 
 .slide.active {
     // margin: v.$main-margin;
     opacity: 1;
     transition-duration: 1s;
-    transform: scale(1.08);
+   
+   
+
 }

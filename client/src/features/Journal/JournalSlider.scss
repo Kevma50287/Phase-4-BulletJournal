@@ -30,13 +30,16 @@
         top: 50px;
         z-index: auto;
 
+
 }
 
 .journal-display {
    
-        position: absolute;
-        left: 40%;
-        top:200px;
+width: 40rem;;
+            position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
         z-index: 2;
         box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
          cursor: pointer;
@@ -47,8 +50,19 @@
     
 
 .journal-form-div {
-    position: absolute;
+    flex-direction: row;
     z-index: 3;
+<<<<<<< HEAD
     top: 550px;
     right: 1000px;
+=======
+position: absolute;
+    top: 40%;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.journal-container {
+    display: flex;
+>>>>>>> FetchStatements
 }
