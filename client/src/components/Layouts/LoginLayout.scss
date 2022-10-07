@@ -1,4 +1,5 @@
 @use '../../utilities/variables.scss' as v;
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 
 #logo-container {
   width: 50%;
@@ -12,19 +13,37 @@
   width: 50%;
   height: 100vh;
   padding: 20vh 2.5% 0px 2.5%;
-  h1, h4 {
+   h4 {
     text-align: center;
+    font-family: "Farsan", cursive;
+    font-size: larger;
+    word-spacing: 3px;
+
   }
+
+  h1{text-align: center;
+    font-family: "Farsan", cursive;
+    font-size: 4rem;
+    word-spacing: 5px;
+
+  }
+
+
+
 
   h5 {
     margin:5px auto 5px auto;
     width: 100%;
+    font-size: larger;
   }
 
   .authButton {
     background:v.$independence;
     border-radius: 20px;
     margin: 2px auto 0px auto;
+    text-align: center;
+      font-family: "Farsan", cursive;
+      
   }
 
   button {
@@ -35,6 +54,9 @@
     width: 100%;
     border: none;
     font-weight: bold;
+    text-align: center;
+      font-family: "Farsan", cursive;
+      
   }
 
   u {
@@ -48,11 +70,19 @@
     padding:5px;
     text-align: center;
     box-shadow: 3px 5px 10px 3px rgb(155, 155, 155);
+    text-align: center;
+      font-family: "Farsan", cursive;
+      font-size: larger;
 
     .authFormInputs {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 1px auto;
       &:hover {
+      text-align: center;
+      font-family: "Farsan", cursive;
+       border-radius: 20%;
+      
+       
         
       }
     }

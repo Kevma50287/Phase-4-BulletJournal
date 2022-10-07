@@ -1,4 +1,5 @@
 @import "../../utilities/variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 
 #calendar-container {
   display: grid;
@@ -12,8 +13,10 @@
   #calendar-header-month-and-year {
     grid-column: 3 / span 3;
     font-size: 2rem;
-    font-weight: bold;
-    background-color: $melon
+    font-weight: 7;
+    background-color: $melon;
+    font-family: 'Farsan', cursive;
+    font-size: 3.5rem;
   };
 
   #calendar-icon-container {
@@ -24,8 +27,9 @@
 
   .days-of-the-week{
     padding-top: 10px;
-    font-weight: bold;
     background-color: $champagne-pink;
+    font-family: 'Farsan', cursive;
+    font-size: 2rem;
   }
 
   .calendar-day{
@@ -113,3 +117,4 @@
     border-left: 1px solid black;
   }
 }
+

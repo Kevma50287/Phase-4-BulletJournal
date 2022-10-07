@@ -49,7 +49,6 @@ export default function Profile() {
           </h1>
           <div className='friends-list'>
             {friendsArray}
-            <img className="friends-image" src="https://ca.slack-edge.com/T02MD9XTF-U03N2J4RGSU-3e7da930ea2b-512" />
           </div>
         </div>
       </div>
