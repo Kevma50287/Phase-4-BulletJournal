@@ -70,7 +70,6 @@ const JournalSlider = () => {
     return null;
   }
 
-  console.log(journals);
   // POST REQUEST
   const handleFormModal = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

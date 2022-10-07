@@ -1,10 +1,9 @@
-import { Person, BarChart, Search, CalendarMonth, AutoStories } from '@mui/icons-material'
+import { Person, CalendarMonth, AutoStories } from '@mui/icons-material'
 import './Header.scss'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import AddIcon from '@mui/icons-material/Add';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { SetStateAction, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { setJournalEntries } from '../../features/Slices/journalSlice';
@@ -57,7 +56,6 @@ const Header = ({ setShowModal, showModal }: HeaderProps) => {
   const handleToggle = () => {
     setShowModal(!showModal);
   };
-  console.log(location)
   const handleDelete = async () => {
     if (areWeAtJournalEntries(location)) {
       const cookieString = document.cookie.split('jwt=')[1]

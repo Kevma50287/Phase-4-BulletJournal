@@ -42,7 +42,6 @@ const SignUpPage = () => {
     try {
       const res = await axios.post('http://localhost:3000/users', { user: { ...signUpCredentials } })
       const data = res.data
-      console.log(data)
       //If signup succeeds, we set the user data and navigate to homepage
       if (data) {
         const user = data.user

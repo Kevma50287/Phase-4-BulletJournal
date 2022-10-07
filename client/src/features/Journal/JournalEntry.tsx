@@ -56,7 +56,6 @@ const Journal = () => {
       //Update the copy with the most recent entries
       initialState.emotion = entry.emotion
       initialState.entry = entry.entry
-      console.log(entry.entry)
       initialState.date = entry.date
       //For each activity seen, set that activity value to true
       entry.activities.forEach((activity: string) => {
@@ -76,7 +75,6 @@ const Journal = () => {
   useEffect(() => {
     //isMounted flag for the return function so state changes will not be made if params change outside of ./journal_entries
     const updatedState = createInitialState(currentEntry, blankState)
-    console.log(updatedState)
     setJournalEntry(updatedState)
   }, [params, currentEntry, showModal[0]]) //blankState not expected to ever change so not included
 

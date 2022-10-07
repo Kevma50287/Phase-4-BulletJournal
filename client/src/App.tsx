@@ -14,7 +14,6 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { setUser } from './features/Slices/userSlice';
 import { useAppSelector } from './hooks';
-import { useState } from 'react';
 
 import EditProfile from './features/EditProfile';
 
@@ -46,7 +45,6 @@ function App() {
     const journal_entries = resEntries.data
     dispatch(setJournalEntries(journal_entries))
     dispatch(setCurrentJournalId(primary_journal_id))
-    console.log(data)
     if (data) {
       dispatch(setUser(data))
       if (location === '/' || location === '/login') {

@@ -1,5 +1,3 @@
-import { Friend } from "../types/UserType"
-
 interface friendCardProps {
   friend: any
 }
