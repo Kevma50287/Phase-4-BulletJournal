@@ -10,16 +10,18 @@ const LoginPage = () => {
     username: "",
     password: ""
   }
-  const[loginCredentials,setLoginCredentials] = useState(initialLoginState) /* "" */
+  const [loginCredentials, setLoginCredentials] = useState(initialLoginState) /* "" */
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   //Handlers
-  const handleLoginCredentials = (e: React.ChangeEvent<HTMLInputElement>)=>{
-    const{name,value} = e.target
+  const handleLoginCredentials = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
     setLoginCredentials(
-        {...loginCredentials,
-        [name]:value}
+      {
+        ...loginCredentials,
+        [name]: value
+      }
     )
   }
 
@@ -30,24 +32,24 @@ const LoginPage = () => {
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:3000/login', {user:loginCredentials}, {
+      const response = await axios.post('http://localhost:3000/login', { user: loginCredentials }, {
         headers: {
-          'Content-Type':'application/json'
+          'Content-Type': 'application/json'
         }
       })
       // If response is accepted then we store the token to local storage
-      if (response.status === 202){
+      if (response.status === 202) {
         const data = response.data
         const jsonWebToken = data.jwt
         const user = data.user
         const journals = data.journals
-        const userObj = {...user, journals:journals}
+        const userObj = { ...user, journals: journals, recent_mood: data.recent_mood }
         console.log(response)
         dispatch(setUser(userObj))
         document.cookie = `jwt=${jsonWebToken}`
         navigate(`/user/${user.username}/`)
       }
-    } catch (err:any) {
+    } catch (err: any) {
       //If there's an error we throw a window alert
       const response = err.response
       const error = response.data.message
@@ -59,30 +61,30 @@ const LoginPage = () => {
     <>
       <h5>Please login:</h5>
       <form id="login-form" onSubmit={e => handleLoginSubmit(e)}>
-          <div>
-            <input 
-              type='text'
-              name='username'
-              className='authFormInputs'
-              value={loginCredentials.username}
-              placeholder='Username'
-              onChange={handleLoginCredentials}
-            />
-          </div>
-          <div>
-            <input 
-              type='password'
-              name='password'
-              className='authFormInputs'
-              value={loginCredentials.password }
-              placeholder='Password'
-              onChange={handleLoginCredentials}
-            />
-          </div>
-          <button type='submit'>Login</button>
-          <h5 className="authButton" onClick={navigateToSignup}><u>Sign Up Here</u></h5>
-        </form>
-    </>  
+        <div>
+          <input
+            type='text'
+            name='username'
+            className='authFormInputs'
+            value={loginCredentials.username}
+            placeholder='Username'
+            onChange={handleLoginCredentials}
+          />
+        </div>
+        <div>
+          <input
+            type='password'
+            name='password'
+            className='authFormInputs'
+            value={loginCredentials.password}
+            placeholder='Password'
+            onChange={handleLoginCredentials}
+          />
+        </div>
+        <button type='submit'>Login</button>
+        <h5 className="authButton" onClick={navigateToSignup}><u>Sign Up Here</u></h5>
+      </form>
+    </>
   )
 }
 

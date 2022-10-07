@@ -1,8 +1,7 @@
 class User < ApplicationRecord
   has_many :shared_journals, dependent: :destroy
   has_many :journals, through: :shared_journals, dependent: :destroy
-  has_many :friends, class_name:"User", foreign_key:"friend_id"
-  belongs_to :friend, class_name: "User", optional: true
+  has_many :journal_entries, through: :journals
   has_secure_password
 
   validates_presence_of :email, :first_name, :last_name, :phone_number, :username
@@ -22,5 +21,9 @@ class User < ApplicationRecord
   # FIXME:How to serialize this?
   def friends_array
     self.followings + self.followers
+  end
+
+  def recent_mood
+    self.journal_entries[self.journal_entries.length()-1].emotion
   end
 end

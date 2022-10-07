@@ -1,23 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserState } from '../../types/UserType'
 
-const initialState:UserState = {
+const initialState: UserState = {
   id: 0,
   email: "",
   username: "",
   journals: [],
-  first_name:"",
-  last_name:"",
-  phone_number:"",
+  first_name: "",
+  last_name: "",
+  phone_number: "",
   primary_journal_id: 0,
-  friends:[],
-  recent_mood:""
+  friends: [],
+  recent_mood: "",
+  profile_picture: ""
 }
 
 export const userSlice = createSlice({
-  name:"user",
+  name: "user",
   initialState: initialState,
-  reducers:{
+  reducers: {
     setUser: (state, action: PayloadAction<UserState>) => {
       const payload = action.payload
       state.id = payload.id
@@ -30,9 +31,10 @@ export const userSlice = createSlice({
       state.primary_journal_id = payload.primary_journal_id
       state.friends = payload.friends
       state.recent_mood = payload.recent_mood
+      state.profile_picture = payload.profile_picture
     }
   }
 })
 
-export const {setUser} = userSlice.actions
+export const { setUser } = userSlice.actions
 export default userSlice.reducer

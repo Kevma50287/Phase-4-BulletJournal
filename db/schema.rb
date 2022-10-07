@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_192318) do
     t.string "last_name"
     t.string "phone_number"
     t.bigint "primary_journal_id"
-    t.string "recent_mood"
+    t.string "profile_picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

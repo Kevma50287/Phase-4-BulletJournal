@@ -1,16 +1,26 @@
 export interface UserState {
-    id:number,
-    username:string,
-    journals:Array<Object>,
-    email:string,
-    first_name:string,
-    last_name:string,
-    phone_number:string,
-    primary_journal_id: number
-    friends:Array<Object>
-    recent_mood:string
+  id: number,
+  username: string,
+  journals: Array<Object>,
+  email: string,
+  first_name: string,
+  last_name: string,
+  phone_number: string,
+  primary_journal_id: number,
+  friends: Array<Object>,
+  recent_mood: string,
+  profile_picture: string
 }
 
+export interface Friend {
+  id: number,
+  username: string,
+  email: string,
+  first_name: string,
+  last_name: string,
+  phone_number: string,
+  profile_picture: string
+}
 
 
 /*

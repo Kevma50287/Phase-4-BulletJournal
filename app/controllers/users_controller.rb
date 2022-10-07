@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     puts "user id: #{@user_id}"
     @user_id = decode_token
     if @user_id
-      render json: User.find_by!(id: @user_id)
+      @user = User.find_by!(id: @user_id)
+      render json: @user, include: [friends: { only: [:]}]
     else 
       render json: {error: "401 incorrect token"}, status: 401
     end
@@ -56,7 +57,7 @@ class UsersController < ApplicationController
   # end
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:email, :username, :password_confirmation, :password, :first_name, :last_name, :phone_number, :primary_journal_id)
+    params.require(:user).permit(:email, :username, :password_confirmation, :password, :first_name, :last_name, :phone_number, :primary_journal_id, :profile_picture)
   end
 
     

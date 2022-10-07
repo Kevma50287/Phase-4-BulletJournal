@@ -14,8 +14,8 @@ User.create!(
   phone_number: "347-935-7112",
   password: "123",
   password_confirmation: "123",
-  recent_mood:'neutral',
-  primary_journal_id:4
+  profile_picture:"https://hips.hearstapps.com/countryliving.cdnds.net/17/47/1511194376-cavachon-puppy-christmas.jpg",
+  primary_journal_id:1
 )
 
 User.create!(
@@ -26,8 +26,8 @@ User.create!(
   phone_number: "347-935-7112",
   password: "123",
   password_confirmation: "123",
-  recent_mood:'neutral',
-  primary_journal_id:1
+  profile_picture:"https://hips.hearstapps.com/countryliving.cdnds.net/17/47/1511194376-cavachon-puppy-christmas.jpg",
+  primary_journal_id:2
 )
 
 User.create!(
@@ -38,8 +38,8 @@ User.create!(
   phone_number: "347-935-7112",
   password: "123",
   password_confirmation: "123",
-  recent_mood:'neutral',
-  primary_journal_id:2
+  profile_picture:"https://hips.hearstapps.com/countryliving.cdnds.net/17/47/1511194376-cavachon-puppy-christmas.jpg",
+  primary_journal_id:3
 )
 
 User.create!(
@@ -50,8 +50,8 @@ User.create!(
   phone_number: "347-935-7112",
   password: "123",
   password_confirmation: "123",
-  recent_mood:'neutral',
-  primary_journal_id:3
+  profile_picture:"https://hips.hearstapps.com/countryliving.cdnds.net/17/47/1511194376-cavachon-puppy-christmas.jpg",
+  primary_journal_id:4
 )
 
 Journal.create!(

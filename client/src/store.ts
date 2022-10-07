@@ -2,14 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import calendarReducer from "./features/Slices/calendarSlice";
 import userReducer from "./features/Slices/userSlice"
 import journalReducer from "./features/Slices/journalSlice"
-import modalReducer from "./features/Slices/modalSlice"
 
 const store = configureStore({
   reducer: {
     calendar: calendarReducer,
     user: userReducer,
-    journal: journalReducer,
-    modal: modalReducer
+    journal: journalReducer
   }
 });
 
