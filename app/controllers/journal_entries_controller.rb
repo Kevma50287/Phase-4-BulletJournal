@@ -4,7 +4,7 @@ class JournalEntriesController < ApplicationController
   
   # GET /journal_entries
   def index
-    @journal_entries = @journal.journal_entries
+    @journal_entries = @journal.journal_entries.order(:date)
 
     render json: @journal_entries
   end

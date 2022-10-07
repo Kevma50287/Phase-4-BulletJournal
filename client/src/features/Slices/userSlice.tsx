@@ -5,7 +5,7 @@ const initialState: UserState = {
   id: 0,
   email: "",
   username: "",
-  journals: [],
+  journals: [{ id: 0, name: "" }],
   first_name: "",
   last_name: "",
   phone_number: "",
@@ -32,9 +32,12 @@ export const userSlice = createSlice({
       state.friends = payload.friends
       state.recent_mood = payload.recent_mood
       state.profile_picture = payload.profile_picture
+    },
+    addJournal: (state, action: PayloadAction<{ id: number, name: string }>) => {
+      state.journals.push(action.payload)
     }
   }
 })
 
-export const { setUser } = userSlice.actions
+export const { setUser, addJournal } = userSlice.actions
 export default userSlice.reducer

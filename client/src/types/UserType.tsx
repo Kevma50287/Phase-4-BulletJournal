@@ -1,7 +1,7 @@
 export interface UserState {
   id: number,
   username: string,
-  journals: Array<Object>,
+  journals: [{ id: number, name: string }],
   email: string,
   first_name: string,
   last_name: string,

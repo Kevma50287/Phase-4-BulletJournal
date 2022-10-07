@@ -3,7 +3,7 @@ import './JournalEntry.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
 import axios from 'axios'
 import { journalProps } from '../../types/JournalType'
@@ -15,6 +15,7 @@ import { setJournalEntries } from '../Slices/journalSlice';
 const Journal = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const showModal: any = useOutletContext();
   const params = useParams()
   const currentEntryId = Number(params.journal_entry_id)
   const idToNumber = currentEntryId - 1
@@ -46,7 +47,7 @@ const Journal = () => {
 
   //Combine latest entry with blank state to create the inital state on page load
   const createInitialState = (entry: any, blankState: journalProps) => {
-    if (entry === undefined) {
+    if (entry === undefined || showModal[0] === true) {
       return blankState
     } else {
       //Create a copy of blankState
@@ -55,6 +56,7 @@ const Journal = () => {
       //Update the copy with the most recent entries
       initialState.emotion = entry.emotion
       initialState.entry = entry.entry
+      console.log(entry.entry)
       initialState.date = entry.date
       //For each activity seen, set that activity value to true
       entry.activities.forEach((activity: string) => {
@@ -73,16 +75,10 @@ const Journal = () => {
   //Whenever the params or currentEntry changes we need to update the state
   useEffect(() => {
     //isMounted flag for the return function so state changes will not be made if params change outside of ./journal_entries
-    let isMounted = true;
-    if (isMounted) {
-      const updatedState = createInitialState(currentEntry, blankState)
-      setJournalEntry(updatedState)
-    };
-    //cleanup function
-    return () => {
-      isMounted = false;
-    }
-  }, [params, currentEntry]) //blankState not expected to ever change so not included
+    const updatedState = createInitialState(currentEntry, blankState)
+    console.log(updatedState)
+    setJournalEntry(updatedState)
+  }, [params, currentEntry, showModal[0]]) //blankState not expected to ever change so not included
 
 
   const handlePageChange = (n: number) => {
@@ -99,7 +95,7 @@ const Journal = () => {
   // FIXME:May need to keep date separate from Calendar State
   const currentDate = useAppSelector((state) => state.calendar.currentDate)
   const selectedDate = useAppSelector((state) => state.calendar.selectedDate)
-  const dateObj = new Date(selectedDate)
+  const dateObj = new Date(currentDate)
 
   //Handler Functions
   const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -129,8 +125,7 @@ const Journal = () => {
   }
 
   //PATCH
-  const handleSave = async (e: any) => {
-    e.preventDefault()
+  const handleSave = async () => {
     const cookieString = document.cookie.split('jwt=')[1]
     const activityKeyValuePairArray = Object.entries(journalEntry.activities)
     const activityArray = activityKeyValuePairArray.filter(([key, value]) => value).map((arr) => arr[0])
@@ -145,6 +140,7 @@ const Journal = () => {
       }
     )
     const data = res.data
+    //update our journal entry array with the positive server response and then set journal entries
     const updated = journalEntries.map((entry) => {
       if (entry.id === data.id) {
         return data
@@ -156,8 +152,7 @@ const Journal = () => {
   }
 
   //DELETE
-  const handleDelete = async (e: any) => {
-    e.preventDefault()
+  const handleDelete = async () => {
     const cookieString = document.cookie.split('jwt=')[1]
     const res = await axios.delete(
       `http://localhost:3000/journals/${params.journal_id}/journal_entries/${currentEntry.id}`,
@@ -175,12 +170,11 @@ const Journal = () => {
 
 
   //CREATE
-  const handleCreate = async (e: any) => {
-    e.preventDefault()
+  const handleCreate = async () => {
     const cookieString = document.cookie.split('jwt=')[1]
     const activityKeyValuePairArray = Object.entries(journalEntry.activities)
     const activityArray = activityKeyValuePairArray.filter(([key, value]) => value).map((arr) => arr[0])
-    const formattedPostObj = { ...journalEntry, activities: activityArray }
+    const formattedPostObj = { ...journalEntry, activities: activityArray, date: currentDate }
     const res = await axios.post(
       `http://localhost:3000/journals/${params.journal_id}/journal_entries`,
       formattedPostObj,
@@ -191,11 +185,21 @@ const Journal = () => {
       }
     )
     const data = res.data
-    journalEntries.push(data)
-    dispatch(setJournalEntries(journalEntries))
+    const newArray = [...journalEntries, data]
+    dispatch(setJournalEntries(newArray))
   }
 
-
+  //handle submit, two functions for the save button
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    if (showModal[0] === true || currentEntry === undefined) {
+      handleCreate()
+    } else {
+      handleSave()
+    }
+    showModal[1](false)
+  }
+  // FIXME: DATEs are one day back
   return (
     <div id="journal">
       <div id='leftpage' >
@@ -207,9 +211,12 @@ const Journal = () => {
         <div id='journal-date'>
           {journalEntry.date.length > 0 ? new Date(journalEntry.date).toDateString() : dateObj.toDateString()}
         </div>
-        <form id='diary-input-container' onSubmit={handleSave}>
+        <form id='diary-input-container' onSubmit={handleSubmit}>
           <textarea id='diary-input' value={journalEntry.entry} onChange={e => handleTextInput(e)} />
-          <button type='submit' id='diary-save-button'> Save Entry </button>
+          <div id="save-delete-container">
+            <button type='submit' id='diary-save-button'> Save Entry </button>
+            <button id='diary-delete-button' onClick={handleDelete}> Delete Entry </button>
+          </div>
         </form>
         <FaArrowAltCircleRight className='right-arrow' onClick={() => handlePageChange(1)} />
       </div>

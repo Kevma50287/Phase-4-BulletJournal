@@ -18,6 +18,7 @@ $button-box-shadow: 0px 0px 5px 2px v.$independence;
 
   #leftpage {
     width: 50%;
+    background-color: v.$book-color;
     height: v.$main-height;
     border-radius: 20px 0px 0px 20px;
     padding: 10px;
@@ -168,12 +169,25 @@ $button-box-shadow: 0px 0px 5px 2px v.$independence;
       linear-gradient(rgba(0, 0, 255, 0.3) 1px, transparent 0);
     background-size: 100% 2em;
   }
+  #save-delete-container{
+    display:flex;
+    flex-direction: row;
+  }
 
   #diary-input-container {
     height: calc(100% - $journal-date-height - 50px);
   }
 
   #diary-save-button {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 1.25rem;
+    height: 40px;
+    width: 200px;
+  }
+
+  #diary-delete-button{
     display: block;
     margin: auto;
     text-align: center;
