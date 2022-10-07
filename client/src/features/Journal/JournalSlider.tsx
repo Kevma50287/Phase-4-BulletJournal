@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
 import { display } from '@mui/system';
 import './JournalSlider.scss'
+
 // interface props {
 //     journals: {image:string}[]
 // }

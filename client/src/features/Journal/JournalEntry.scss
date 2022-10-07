@@ -1,6 +1,7 @@
 // Import variables
 @use "../../utilities/variables.scss" as v;
 @import url('http://weloveiconfonts.com/api/?family=entypo');
+@import url('https://fonts.googleapis.com/css?family=Abel|Aguafina+Script|Artifika|Athiti|Condiment|Dosis|Droid+Serif|Farsan|Gurajada|Josefin+Sans|Lato|Lora|Merriweather|Noto+Serif|Open+Sans+Condensed:300|Playfair+Display|Rasa|Sahitya|Share+Tech|Text+Me+One|Titillium+Web');
 
 $journal-date-height: 20px;
 $button-box-shadow: 0px 0px 5px 2px v.$independence;
@@ -21,19 +22,29 @@ $button-box-shadow: 0px 0px 5px 2px v.$independence;
     height: v.$main-height;
     border-radius: 20px 0px 0px 20px;
     padding: 10px;
+    background-color: v.$book-color;
     
 
     h3 {
       margin: 10px 0px 10px 0px;
       text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Farsan', cursive;
+      height: 60px;
+      font-size:x-large;
+      font-weight: 500;
+      word-spacing: 7px;
+      margin-top: 24px;
+      letter-spacing: 2px;
+      
+      
+
     }
 
     #all-emotions-container {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      margin-bottom: 10px;
+      margin-bottom: 50px;
 
       .emotion-icon-container {
         display: flex;
