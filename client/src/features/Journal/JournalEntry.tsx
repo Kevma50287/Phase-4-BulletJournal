@@ -3,15 +3,10 @@ import './JournalEntry.scss'
 import { useAppSelector } from '../../hooks'
 import DailyEmotionCheck from './DailyEmotionCheck'
 import DailyActivityCheck from './DailyActivityCheck'
-<<<<<<< HEAD
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
 import axios from 'axios'
 import { journalProps } from '../../types/JournalType'
-=======
-import { useParams } from 'react-router-dom'
-import AddIcon from '@mui/icons-material/Add';
->>>>>>> Routing
 
 // Need to type the key of the object as a string
 

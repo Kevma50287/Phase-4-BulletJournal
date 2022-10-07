@@ -82,6 +82,15 @@
     height:50%;
     width: 30%;
     margin: 5px auto;
+
+    .text-icon {
+      margin: 20% auto;
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 3px 2px #000;
+        z-index:2;
+      }
+    }
   }
   //Applies border to all divs
   div {
