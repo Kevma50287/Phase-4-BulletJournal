@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { setCurrentJournalId, setJournalEntries } from '../Slices/journalSlice';
 import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
-import { display } from '@mui/system';
 import './JournalSlider.scss'
 import { addJournal } from '../Slices/userSlice';
 // interface props {
@@ -104,39 +103,42 @@ const JournalSlider = () => {
   };
 
   return (
-    <section className='slider'>
-
-      {showModal[0] ? <form onSubmit={handleFormModal} >
-        <div className="modal-label">Journal Name</div>
-        <input onChange={(e) => handleTextInput(e)}
-          required
-          type="text"
-
-        />
-      </form>
-        :
-        null}
-
-
+    <div className="journal-container">
       <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-      <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
+      <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
       {journals.map((slide, index) => {
         return (
           <div
-            className={index === current ? 'slide active' : 'slide'}
+            className={index === current ? "slide active" : "slide"}
             key={index}
             onClick={() => navigateToEntry(slide)}
           >
             {index === current && (
-              <>
-                <h2>{slide.name}</h2>
-                <img src={JournalImage} alt="random" className='ex-image' />
-              </>
+              <img
+                className="journal-display"
+                src={JournalImage}
+                alt="random"
+              />
             )}
           </div>
         );
       })}
-    </section>
+      <div className="journal-form-div">
+        <div>
+          {showModal[0] ? (
+            <form onSubmit={handleFormModal}>
+              <div className="modal-stuff">Journal Name</div>
+              <input
+                className="modal-input"
+                onChange={(e) => handleTextInput(e)}
+                required
+                type="text"
+              />
+            </form>
+          ) : null}
+        </div>
+      </div>
+    </div>
   );
 };
 

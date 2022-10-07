@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Abel|Aguafina+Script|Artifika|Athiti|Condiment|Dosis|Droid+Serif|Farsan|Gurajada|Josefin+Sans|Lato|Lora|Merriweather|Noto+Serif|Open+Sans+Condensed:300|Playfair+Display|Rasa|Sahitya|Share+Tech|Text+Me+One|Titillium+Web');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+.modal-input {
+    position: relative;
+    border: #321602;
+    border-bottom: 2px solid #080819;
+    border-radius: 10%;
+    background: none;
+    padding: 30px 6px;
+    font-weight: 700;
+    padding-bottom: 7px;
+    font-family: 'Alex Brush', cursive;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+    left: 40px;
+    z-index: auto;
+    font-size:x-large
+    
+}
+
+.modal-stuff {
+    font-family: 'Alex Brush',
+            cursive;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        font-size: 3em;
+        top: 50px;
+        z-index: auto;
+
+}
+
+.journal-display {
+   
+        position: absolute;
+        left: 40%;
+        top:200px;
+        z-index: 2;
+        box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.08);
+         cursor: pointer;
+
+
+    
+    }
+    
+
+.journal-form-div {
+    position: absolute;
+    z-index: 3;
+    top: 550px;
+    right: 1000px;
+}

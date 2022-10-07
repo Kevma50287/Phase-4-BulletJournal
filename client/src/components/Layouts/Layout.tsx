@@ -4,12 +4,13 @@ import { useState } from 'react'
 
 const Layout = () => {
 
-  const [showModal, setShowModal] =  useState(false)
+  const [showModal, setShowModal] = useState(false)
+
 
   return (
     <div>
-      <Header showModal={showModal} setShowModal={setShowModal}/>
-      <Main setShowModal={setShowModal} showModal={showModal}/>
+      <Header showModal={showModal} setShowModal={setShowModal} />
+      <Main setShowModal={setShowModal} showModal={showModal} />
     </div>
   )
 }

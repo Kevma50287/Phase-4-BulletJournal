@@ -28,7 +28,7 @@ function App() {
   const navigate = useNavigate()
   const user = useAppSelector(state => state.user)
   const location = useLocation().pathname
-  
+
   const getUserProfile = async () => {
     const cookieString = document.cookie.split('jwt=')[1]
     const res = await axios.get('http://localhost:3000/profile', {
@@ -47,9 +47,9 @@ function App() {
     dispatch(setJournalEntries(journal_entries))
     dispatch(setCurrentJournalId(primary_journal_id))
     console.log(data)
-    if (data){
+    if (data) {
       dispatch(setUser(data))
-      if (location === '/' || location === '/login'){
+      if (location === '/' || location === '/login') {
         navigate(`/user/${data.username}/`)
       }
     } else {
@@ -60,37 +60,36 @@ function App() {
 
   useEffect(() => {
     const cookieString = document.cookie.split('jwt=')[1]
-    if (cookieString && (user.id === 0)){
+    if (cookieString && (user.id === 0)) {
       getUserProfile()
     }
   }, [])
 
   return (
-        <div className="App">
-          <div>
-            <Routes>
-              <Route path="/" element={<LoginLayout/>}>
-                <Route index element={<LoginPage/>}/>
-                <Route path='login' element={<LoginPage/>}/>
-                <Route path='signup' element={<SignUpPage/>}/>
-              </Route>
-              {/* TODO: The username routes should only be accessible if the user is logged in */}
-              {/* If the user is not logged in then unauthorized should be returned */}
-              <Route path='/user/:username' element={<Layout/>}>
-                <Route index element={<Profile/>}/>
-                <Route path='journals' element={<JournalSlider/>}> 
-                </Route>
-                <Route path='journals/:journal_id/journal_entries/:journal_entry_id' element={<JournalEntry/>}/>
-                <Route path='calendar' element={<Calendar/>}/>
-                <Route path='settings' element={<Settings/>}/>
-                {/* TODO: Add statistics and profile */}
-                {/* <Route path='stats' element={<Statistics/>}/> */}
-                <Route path='profile' element={<Profile/>}/> 
-                <Route path='edit' element={<EditProfile/>}/>
-              </Route>
-            </Routes>
-          </div>
-        </div>
+    <div className="App">
+      <div>
+        <Routes>
+          <Route path="/" element={<LoginLayout />}>
+            <Route index element={<LoginPage />} />
+            <Route path='login' element={<LoginPage />} />
+            <Route path='signup' element={<SignUpPage />} />
+          </Route>
+          {/* TODO: The username routes should only be accessible if the user is logged in */}
+          {/* If the user is not logged in then unauthorized should be returned */}
+          <Route path='/user/:username' element={<Layout />}>
+            <Route index element={<Profile />} />
+            <Route path='journals' element={<JournalSlider />} />
+            <Route path='journals/:journal_id/journal_entries/:journal_entry_id' element={<JournalEntry />} />
+            <Route path='calendar' element={<Calendar />} />
+            <Route path='settings' element={<Settings />} />
+            {/* TODO: Add statistics and profile */}
+            {/* <Route path='stats' element={<Statistics/>}/> */}
+            <Route path='profile' element={<Profile />} />
+            <Route path='edit' element={<EditProfile />} />
+          </Route>
+        </Routes>
+      </div>
+    </div>
   );
 }
 

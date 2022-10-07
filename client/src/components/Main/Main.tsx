@@ -5,13 +5,12 @@ import { Outlet } from 'react-router-dom'
 interface MainProps {
   showModal: boolean
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>
-
 }
 
-const Main = ({showModal, setShowModal}:MainProps) => {
+const Main = ({ showModal, setShowModal }: MainProps) => {
   return (
     <div>
-      <Outlet context={[showModal, setShowModal]}/>
+      <Outlet context={[showModal, setShowModal]} />
     </div>
   )
 }

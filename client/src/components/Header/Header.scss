@@ -9,20 +9,28 @@
   height:fit-content;
   width: fit-content;
   text-align: center;
+
+  //disable default css 
+  a:any-link{
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover svg{
+    transform: scale(3);
+    transition: all 0.25s;
+  }
+
+  .header-icon:hover{
+    transform: scale(3);
+    transition: all 0.25s;
+    cursor: pointer;
+  }
 }
 
 
 
-//disable default css 
-a:any-link{
-  color: black;
-  text-decoration: none;
-}
 
-a:hover svg{
-  transform: scale(3);
-  transition: all 0.25s;
-}
 
 
 .navbar-div {
