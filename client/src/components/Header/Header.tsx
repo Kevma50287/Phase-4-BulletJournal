@@ -54,13 +54,10 @@ const Header = ({ setShowModal, showModal }: HeaderProps) => {
     }
   };
 
-
   const handleToggle = () => {
     setShowModal(!showModal);
   };
-
   console.log(location)
-
   const handleDelete = async () => {
     if (areWeAtJournalEntries(location)) {
       const cookieString = document.cookie.split('jwt=')[1]

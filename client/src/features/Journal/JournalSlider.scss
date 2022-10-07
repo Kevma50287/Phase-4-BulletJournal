@@ -52,11 +52,7 @@ width: 40rem;;
 .journal-form-div {
     flex-direction: row;
     z-index: 3;
-<<<<<<< HEAD
-    top: 550px;
-    right: 1000px;
-=======
-position: absolute;
+    position: absolute;
     top: 40%;
     right: 50%;
     transform: translateX(50%);
@@ -64,5 +60,4 @@ position: absolute;
 
 .journal-container {
     display: flex;
->>>>>>> FetchStatements
 }
