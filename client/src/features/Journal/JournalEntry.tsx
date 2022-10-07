@@ -198,7 +198,7 @@ const Journal = () => {
   
   return (
     <div id="journal">
-      <div id='leftpage'>
+      <div id='leftpage' >
         <DailyEmotionCheck setEmotion={handleEmotion} currentEmotion={journalEntry.emotion} />
         <DailyActivityCheck setActivities={handleActivities} currentActivities={journalEntry.activities} />
         <FaArrowAltCircleLeft className = "left-arrow"  onClick = {() => handlePageChange(-1)} />
