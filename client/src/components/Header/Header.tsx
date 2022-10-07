@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface HeaderProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
@@ -24,53 +25,60 @@ const Header = ({ setShowModal, showModal }: HeaderProps) => {
     if (array.includes('journals')) {
       return true
     } else {
-      return false
+      return false;
     }
-  }
-  const params = useParams()
-  const username = params.username
+  };
+  const params = useParams();
+  const username = params.username;
 
   const handleToggle = () => {
-    setShowModal(!showModal)
-  }
+    setShowModal(!showModal);
+  };
 
   const handleLogout = () => {
     document.cookie = "jwt= ;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
     navigate('/')
   }
 
+  // conditionally render the journal trash can delete when we are in journals
+
   return (
-    <div id="header">
-      <div className='icon-container'>
-        <Link to={`/user/${username}/calendar`}>
-          <CalendarMonth className='header-icon' />
-        </Link>
-      </div>
-      {areWeAtJournals(location) &&
-        <div className='icon-container'>
-          <AddIcon className='header-icon'
-            onClick={handleToggle}
-          />
+    <div className="navbar-div">
+      <div className='nav-item-container'>
+        <div className="icon-container">
+          <Link to={`/user/${username}/calendar`}>
+            <CalendarMonth className="header-icon" />
+          </Link>
         </div>
-      }
-      <div className='icon-container'>
-        <Search className='header-icon' />
-      </div>
-      <div className='icon-container'>
-        <Link to={`/user/${username}/journals`}>
-          <AutoStories className='header-icon' />
-        </Link>
-      </div>
-      <div className='icon-container'>
-        <Link to={`/user/${username}/profile`}>
-          <Person className='header-icon' />
-        </Link>
-      </div>
-      <div className='icon-container'>
-        <LogoutIcon className='header-icon' onClick={handleLogout} />
+
+        {areWeAtJournals(location) && (
+          <div className="icon-container">
+            <DeleteIcon className="header-icon" />
+          </div>
+        )}
+
+        {areWeAtJournals(location) && (
+          <div className="icon-container">
+            <AddIcon onClick={handleToggle} className="header-icon" />
+          </div>
+        )}
+
+        <div className="icon-container">
+          <Link to={`/user/${username}/journals`}>
+            <AutoStories className="header-icon" />
+          </Link>
+        </div>
+        <div className="icon-container">
+          <Link to={`/user/${username}/profile`}>
+            <Person className="header-icon" />
+          </Link>
+        </div>
+        <div className='icon-container'>
+          <LogoutIcon className='header-icon' onClick={handleLogout} />
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Header

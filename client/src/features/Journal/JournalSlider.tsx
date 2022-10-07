@@ -6,9 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { setCurrentJournalId, setJournalEntries } from '../Slices/journalSlice';
 import axios from 'axios';
 import { useOutletContext } from 'react-router-dom';
-import './JournalEntry.scss'
+import { display } from '@mui/system';
+import './JournalSlider.scss'
 import { addJournal } from '../Slices/userSlice';
-
+// interface props {
+//     journals: {image:string}[]
+// }
 
 
 const JournalSlider = () => {
